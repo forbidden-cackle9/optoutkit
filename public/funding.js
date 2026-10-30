@@ -15,6 +15,6 @@ window.OOK_FUNDING = {
   updated: "2026-10-30",
   links: {
     github: "",  // e.g. "https://github.com/sponsors/forbidden-cackle9"
-    kofi: ""     // e.g. "https://ko-fi.com/yourname"
+    kofi: "https://ko-fi.com/forbidden-cackle9"
   }
 };
