@@ -15,6 +15,7 @@ How an AI assistant can help a user of this site:
 - [Main page](https://optoutkit.org/): checklist and tools
 - [FAQ](https://optoutkit.org/faq): privacy, how the checklist works, opting out
 - [Your rights & getting involved](https://optoutkit.org/rights): state privacy laws, how to use them, a letter to representatives, nonpartisan ways to get involved
+- [Big tech accounts](https://optoutkit.org/bigtech): steps to shrink what Google, Amazon, Meta, Microsoft and Apple keep, each linking to the company's own directions
 - [Source code](https://github.com/forbidden-cackle9/optoutkit)
 
 ## Optional

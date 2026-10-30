@@ -13,7 +13,7 @@ Source for [optoutkit.org](https://optoutkit.org): a free page for checking leak
 - `public/funding.js` — running costs, support received (after fees) and support links. Support stays hidden until a link is set, and the links disappear once costs are covered.
 - `tools/scores.py` — the state privacy ranking: run it to regenerate `public/scores.js` (rights page heat map) and `public/us-privacy-ranking.xlsx` (download). Review each January.
 - `tools/check_links.py` + `.github/workflows/check-links.yml` — weekly link check that opens an issue if a link breaks
-- `public/` — everything that is served: `index.html` + `app.js`, `faq.html`, `rights.html` + `rights.js`, `states.js` (state privacy laws, review each legislative session), `styles.css`, `favicon.svg`, `_headers`
+- `public/` — everything that is served: `index.html` + `app.js`, `faq.html`, `rights.html` + `rights.js`, `bigtech.html` + `bigtech.js` (big tech steps; review links each January), `states.js` (state privacy laws, review each legislative session), `styles.css`, `favicon.svg`, `_headers`
 - `wrangler.jsonc` — tells Cloudflare to serve `public/` as a static site
 
 ## License

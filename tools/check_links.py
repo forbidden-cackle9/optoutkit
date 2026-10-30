@@ -35,7 +35,7 @@ def check(url, domains):
 import re as _re
 pages = []
 seen = set()
-for page in sorted((root / "public").glob("*.html")) + [root / "public/rights.js", root / "public/states.js"]:
+for page in sorted((root / "public").glob("*.html")) + [root / "public/rights.js", root / "public/states.js", root / "public/bigtech.js"]:
     for u in _re.findall(r'https://[^"\'\s<>]+', page.read_text(encoding="utf-8")):
         u = u.rstrip(").,")
         h = host(u)

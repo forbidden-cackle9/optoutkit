@@ -133,3 +133,10 @@ table.costs{border-collapse:collapse;margin-top:8px;font-variant-numeric:tabular
 table.costs td{padding:4px 12px 4px 0;border-bottom:1px solid var(--rule)}
 table.costs td.num{text-align:right}
 table.costs tr.tot td{font-weight:700;border-bottom:0}
+.companies{display:flex;flex-direction:column;gap:28px}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.step{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--rule)}
+.step:first-child{border-top:0}
+.chk input{width:22px;height:22px;margin:2px 0 0;accent-color:#2E9E5B;cursor:pointer}
+.sbody{display:flex;flex-direction:column;gap:4px;min-width:0}
+.step.done h3{color:var(--ok)}
