@@ -70,6 +70,40 @@
   <div class="row"><a class="btn ghost" href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Search your email on Have I Been Pwned</a></div>
 </section>
 
+<section aria-labelledby="dr-h">
+  <div><span class="label">Tool</span><h2 id="dr-h">Draft a removal request</h2></div>
+  <p>For sites that take requests by email, or companies with no opt-out form. Fill in what you're comfortable sharing and get a ready-to-send draft. Nothing you type here is saved or sent anywhere; you send the email yourself.</p>
+  <form id="drform" class="drform" autocomplete="off">
+    <label class="fld"><span class="label">Send to</span>
+      <select id="dr-to">
+        <option value="mylife">MyLife (privacy@mylife.com)</option>
+        <option value="usphonebook">USPhoneBook (support+optout@usphonebook.com)</option>
+        <option value="other">Another company</option>
+      </select></label>
+    <label class="fld" id="dr-other-wrap" hidden><span class="label">Company name and email</span>
+      <span class="pair"><input type="text" id="dr-co" placeholder="Company name"><input type="text" id="dr-addr" placeholder="privacy@example.com" inputmode="email"></span></label>
+    <label class="fld"><span class="label">Type of request</span>
+      <select id="dr-type">
+        <option value="optout">Opt-out: remove listing</option>
+        <option value="ccpa">Deletion: California law</option>
+        <option value="gdpr">Erasure: UK and EU law</option>
+      </select></label>
+    <label class="fld"><span class="label">Full name</span><input type="text" id="dr-name" placeholder="As it appears on the listing"></label>
+    <label class="fld"><span class="label">City and state <span class="muted">(optional)</span></span><input type="text" id="dr-place" placeholder="Helps them find the right record"></label>
+    <label class="fld"><span class="label">Link to your listing <span class="muted">(optional)</span></span><input type="text" id="dr-link" placeholder="https://"></label>
+  </form>
+  <div>
+    <div class="label">Draft</div>
+    <textarea id="dr-out" rows="12" readonly aria-label="Draft email"></textarea>
+  </div>
+  <div class="row">
+    <button type="button" class="primary" id="dr-copy">Copy draft</button>
+    <a class="btn ghost" id="dr-mail" href="#">Open in email app</a>
+    <span class="small muted" id="dr-status" aria-live="polite"></span>
+  </div>
+  <p class="small muted">Send it from the email address you want them to reply to. Don't add ID numbers such as a Social Security number; if a company needs to verify you, it can ask. These drafts are templates, not legal advice.</p>
+</section>
+
 <section aria-labelledby="more-h">
   <div><span class="label">More protection</span><h2 id="more-h">Lock down the rest</h2></div>
   <ul class="also">
@@ -244,6 +278,43 @@ document.getElementById("pwform").addEventListener("submit",function(ev){
 document.getElementById("pwclear").addEventListener("click",function(){pw.value="";seq++;showPrefix("");out.hidden=true;pw.focus();});
 var showBtn=document.getElementById("pwshow");
 showBtn.addEventListener("click",function(){var on=pw.type==="password";pw.type=on?"text":"password";showBtn.textContent=on?"Hide":"Show";showBtn.setAttribute("aria-pressed",String(on));});
+
+/* ---------- Removal request drafts (nothing stored or sent) ---------- */
+var DR={mylife:{co:"MyLife",addr:"privacy@mylife.com"},usphonebook:{co:"USPhoneBook",addr:"support+optout@usphonebook.com"}};
+function v(id){return document.getElementById(id).value.trim();}
+function draft(){
+  var to=v("dr-to"),type=v("dr-type"),co,addr;
+  document.getElementById("dr-other-wrap").hidden=(to!=="other");
+  if(to==="other"){co=v("dr-co")||"[Company name]";addr=v("dr-addr");}else{co=DR[to].co;addr=DR[to].addr;}
+  var name=v("dr-name")||"[Your full name]",place=v("dr-place"),lnk=v("dr-link");
+  var who="Name: "+name+(place?"\nLocation: "+place:"")+(lnk?"\nListing: "+lnk:"");
+  var subj,body;
+  if(type==="optout"){
+    subj="Opt-out request: please remove my listing";
+    body="Hello,\n\nPlease remove my personal information from "+co+" and any affiliated sites, and suppress it so it isn't republished.\n\n"+who+"\n\nPlease confirm by reply when this is done.\n\nThank you,\n"+name;
+  }else if(type==="ccpa"){
+    subj="California Consumer Privacy Act request to delete personal information";
+    body="Hello,\n\nI am a California resident. Under the California Consumer Privacy Act (Cal. Civ. Code § 1798.105), I request that "+co+" delete all personal information it holds about me, and direct any service providers and contractors to do the same.\n\n"+who+"\n\nPlease confirm the deletion in writing. The law requires a response within 45 days of receiving this request. If you need to verify my identity, contact me at this email address; please don't ask for more information than verification requires.\n\nThank you,\n"+name;
+  }else{
+    subj="Request for erasure of personal data (Article 17 GDPR)";
+    body="Hello,\n\nUnder Article 17 of the General Data Protection Regulation (and the UK GDPR, where it applies), I request that "+co+" erase all personal data it holds about me without undue delay, and stop any further processing, including sale or sharing with third parties.\n\n"+who+"\n\nPlease confirm the erasure in writing within one month of receiving this request, as Article 12(3) requires. If you need to verify my identity, contact me at this email address.\n\nThank you,\n"+name;
+  }
+  document.getElementById("dr-out").value="Subject: "+subj+"\n\n"+body;
+  var m=document.getElementById("dr-mail");
+  if(addr){m.href="mailto:"+addr.replace(/[^A-Za-z0-9.+_@-]/g,"")+"?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(body);m.removeAttribute("aria-disabled");}
+  else{m.href="#";m.setAttribute("aria-disabled","true");}
+  document.getElementById("dr-status").textContent="";
+}
+["dr-to","dr-type","dr-co","dr-addr","dr-name","dr-place","dr-link"].forEach(function(id){var e=document.getElementById(id);e.addEventListener("input",draft);e.addEventListener("change",draft);});
+document.getElementById("drform").addEventListener("submit",function(e){e.preventDefault();});
+document.getElementById("dr-mail").addEventListener("click",function(e){if(this.getAttribute("aria-disabled")){e.preventDefault();document.getElementById("dr-status").textContent="Add the company's email address first.";}});
+document.getElementById("dr-copy").addEventListener("click",function(){
+  var t=document.getElementById("dr-out"),st=document.getElementById("dr-status");
+  function ok(){st.textContent="Copied.";}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(ok,function(){t.select();st.textContent="Selected. Copy it with your device's copy command.";});}
+  else{t.select();st.textContent="Selected. Copy it with your device's copy command.";}
+});
+draft();
 })();
 </script>
 
