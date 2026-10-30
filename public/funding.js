@@ -7,10 +7,10 @@ window.OOK_FUNDING = {
   period: "November 2026 to October 2027",
   periodEnds: "2027-10-31",
   costs: [
-    { item: "Domain name (optoutkit.org)", amount: null },
-    { item: "AI tools used to build and maintain the site", amount: null }
+    { item: "Domain name (optoutkit.org)", amount: 11.99 },
+    { item: "Claude (AI used to build and maintain the site)", amount: null }
   ],
-  note: "Hosting is free.",  // shown under the cost table; say how the AI tools cost is counted
+  note: "Hosting is free. The full Claude subscription is counted.",  // shown under the cost table; say how the AI tools cost is counted
   received: 0,
   updated: "2026-10-30",
   links: {

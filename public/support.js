@@ -2,7 +2,7 @@
 "use strict";
 var F=window.OOK_FUNDING;if(!F)return;
 function el(tag,attrs,text){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
-function money(n){return "$"+Math.round(n).toLocaleString("en-US");}
+function money(n){return "$"+(+n).toLocaleString("en-US",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});}
 var L=F.links||{},links=[];
 if(L.github)links.push(["GitHub Sponsors",L.github]);
 if(L.kofi)links.push(["Ko-fi",L.kofi]);
