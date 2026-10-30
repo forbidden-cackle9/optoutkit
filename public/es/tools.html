@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Revise una contraseña en privado, vea si su correo apareció en una filtración y redacte solicitudes de eliminación de datos. Nada de lo que escribe se guarda ni se envía.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Herramientas · Opt Out Kit</title>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://optoutkit.org/es/tools">
+<link rel="alternate" hreflang="en" href="https://optoutkit.org/tools">
+<link rel="alternate" hreflang="es" href="https://optoutkit.org/es/tools">
+<link rel="alternate" hreflang="x-default" href="https://optoutkit.org/tools">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <nav class="toplinks" aria-label="Sitio">
+    <a href="/es/">Inicio</a><a href="/es/remove">Quitar perfiles</a><a href="/es/lockdown">Proteja sus datos</a><a href="/es/bigtech">Grandes tecnológicas</a><a href="/es/tools" aria-current="page">Herramientas</a><a href="/es/rights">Sus derechos</a><a href="/es/safety">Seguridad</a><a href="/es/faq">Preguntas</a><a class="lang" href="/tools" hreflang="en" lang="en">English</a>
+  </nav>
+  <h1>Herramientas</h1>
+  <p class="lede">Revisiones y borradores rápidos que funcionan en su navegador. Úselos cuando cree una contraseña nueva, se entere de una filtración o necesite escribirle a una empresa.</p>
+</header>
+
+<section aria-labelledby="pw-h">
+  <div><span class="label">Herramienta</span><h2 id="pw-h">¿Se filtró una contraseña?</h2></div>
+  <p>Escriba una contraseña que use. Su navegador la convierte en un código de 40 caracteres (un hash SHA-1). Solo los primeros 5 caracteres se envían a Have I Been Pwned, que devuelve todos los códigos filtrados que empiezan así. Su navegador hace la comparación, así que la contraseña nunca sale de este dispositivo.</p>
+  <form id="pwform" class="row" autocomplete="off">
+    <label for="pw" class="label" style="flex-basis:100%">Contraseña</label>
+    <input id="pw" type="password" spellcheck="false" autocomplete="off" placeholder="Escriba una contraseña">
+    <button type="submit" class="primary" id="pwgo">Revisar</button>
+    <button type="button" class="ghost" id="pwshow" aria-pressed="false">Mostrar</button>
+    <button type="button" class="ghost" id="pwclear">Borrar</button>
+  </form>
+  <div>
+    <div class="label">Lo que se envía</div>
+    <div class="hash" id="hashview" aria-live="polite"><span class="sent">5BAA6</span><span class="kept">···································</span> <span class="muted small">(ejemplo: la palabra "password")</span></div>
+  </div>
+  <div id="pwresult" aria-live="polite" hidden></div>
+</section>
+
+<section aria-labelledby="em-h">
+  <div><span class="label">Herramienta</span><h2 id="em-h">¿Su correo apareció en una filtración?</h2></div>
+  <p>Para este paso lo enviamos a Have I Been Pwned, y es a propósito. Revisar un correo significa enviar la dirección misma, y preferimos no verla nunca. Have I Been Pwned es la base de datos de filtraciones más usada y funciona desde 2013. El sitio está en inglés.</p>
+  <ul class="also">
+    <li><strong>Escriba su correo en el buscador de la página de inicio.</strong> La búsqueda gratuita es todo lo que necesita.</li>
+    <li><strong>No haga caso de los planes de pago, los anuncios de patrocinadores ni las ofertas de protección.</strong> No necesita nada de eso.</li>
+    <li><strong>Si aparecen filtraciones,</strong> cambie su contraseña en esos sitios y en cualquier otro donde la haya repetido, y active el inicio de sesión en dos pasos donde se ofrezca.</li>
+    <li><strong>Si dice “no se encontraron filtraciones”, es buena noticia,</strong> pero no una garantía. Siga usando una contraseña distinta en cada sitio.</li>
+  </ul>
+  <div class="row"><a class="btn ghost" href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Buscar mi correo en Have I Been Pwned</a></div>
+</section>
+
+<section aria-labelledby="dr-h">
+  <div><span class="label">Herramienta</span><h2 id="dr-h">Redacte una solicitud de eliminación</h2></div>
+  <p>Para sitios que aceptan solicitudes por correo electrónico, o empresas sin formulario para darse de baja. Llene lo que se sienta cómodo compartiendo y obtenga un borrador listo para enviar. Nada de lo que escribe aquí se guarda ni se envía; usted envía el correo.</p>
+  <p class="note">El borrador está en inglés, porque lo leerá una empresa estadounidense. Pide que borren sus datos y que le confirmen por escrito.</p>
+  <form id="drform" class="drform" autocomplete="off">
+    <label class="fld"><span class="label">Enviar a</span>
+      <select id="dr-to">
+        <option value="mylife">MyLife (privacy@mylife.com)</option>
+        <option value="usphonebook">USPhoneBook (support+optout@usphonebook.com)</option>
+        <option value="other">Otra empresa</option>
+      </select></label>
+    <label class="fld" id="dr-other-wrap" hidden><span class="label">Nombre y correo de la empresa</span>
+      <span class="pair"><input type="text" id="dr-co" placeholder="Nombre de la empresa"><input type="text" id="dr-addr" placeholder="privacy@example.com" inputmode="email"></span></label>
+    <label class="fld"><span class="label">Tipo de solicitud</span>
+      <select id="dr-type">
+        <option value="optout">Baja: quitar mi perfil</option>
+        <option value="ccpa">Eliminación: ley de California</option>
+        <option value="state">Eliminación: ley de mi estado</option>
+        <option value="gdpr">Supresión: ley del Reino Unido y la UE</option>
+      </select></label>
+    <label class="fld" id="dr-state-wrap" hidden><span class="label">Su estado</span>
+      <select id="dr-state"></select></label>
+    <label class="fld"><span class="label">Nombre completo</span><input type="text" id="dr-name" placeholder="Como aparece en el perfil"></label>
+    <label class="fld"><span class="label">Ciudad y estado <span class="muted">(opcional)</span></span><input type="text" id="dr-place" placeholder="Les ayuda a encontrar el registro correcto"></label>
+    <label class="fld"><span class="label">Enlace a su perfil <span class="muted">(opcional)</span></span><input type="text" id="dr-link" placeholder="https://"></label>
+  </form>
+  <div>
+    <div class="label">Borrador</div>
+    <textarea id="dr-out" rows="12" readonly aria-label="Borrador del correo"></textarea>
+  </div>
+  <div class="row">
+    <button type="button" class="primary" id="dr-copy">Copiar borrador</button>
+    <a class="btn ghost" id="dr-mail" href="#">Abrir en mi correo</a>
+    <span class="small muted" id="dr-status" aria-live="polite"></span>
+  </div>
+  <p class="small muted">Envíelo desde el correo en el que quiere recibir la respuesta. No agregue números de identificación, como el del Seguro Social; si la empresa necesita verificar su identidad, se lo pedirá. Estos borradores son plantillas, no asesoría legal.</p>
+</section>
+
+<footer>
+  <p class="support-slot small" hidden></p>
+  <p><a href="/es/">Inicio</a> · <a href="/es/remove">Quitar perfiles</a> · <a href="/es/lockdown">Proteja sus datos</a> · <a href="/es/bigtech">Grandes tecnológicas</a> · <a href="/es/tools">Herramientas</a> · <a href="/es/rights">Sus derechos</a> · <a href="/es/safety">Seguridad</a> · <a href="/es/faq">Preguntas</a></p>
+  <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Código fuente en GitHub</a> · Código abierto bajo la licencia <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
+</footer>
+</div>
+<script src="/common.js"></script>
+<script src="/funding.js"></script>
+<script src="/support.js"></script>
+<script src="/states.js"></script>
+<script src="/tools.js"></script>
+</body>
+</html>

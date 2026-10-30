@@ -26,6 +26,7 @@ for line in block.strip().splitlines():
         "findProfileUrl": d.get("search") or None,
         "officialDomains": hosts,
         "tip": d.get("tip") or None,
+        "tip_es": d.get("tip_es") or None,
     })
 out = {
     "name": "Opt Out Kit broker list",

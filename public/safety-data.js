@@ -1,0 +1,58 @@
+/* Address confidentiality programs, reviewed 2026-10-30.
+   Sources: National Association of Confidential Address Programs member list (2025, via Washington SOS);
+   Minnesota Secretary of State, "Other states with programs like Safe at Home"; official state pages.
+   u: official program page. "" = program exists but no reliable page found; the safety page then points to the state directory.
+   none: no program found. Territories: not covered by these sources. */
+window.OOK_ACP={
+ AL:{none:1},AK:{none:1},
+ AZ:{n:"Address Confidentiality Program",u:"https://azsos.gov/services/acp"},
+ AR:{n:"Address Confidentiality Program",u:"https://www.dfa.arkansas.gov/driver-services/address-confidentiality-program/"},
+ CA:{n:"Safe at Home",u:"https://www.sos.ca.gov/safeathome"},
+ CO:{n:"Address Confidentiality Program",u:"https://dcs.colorado.gov/acp"},
+ CT:{n:"Address Confidentiality Program",u:"https://portal.ct.gov/SOTS/BusinessServices/ACP/Address-Confidentiality-Program"},
+ DE:{n:"Address Confidentiality Program (Delaware Department of Justice)",u:""},
+ DC:{n:"Address Confidentiality Program",u:"https://ovsjg.dc.gov/acp"},
+ FL:{n:"Address Confidentiality Program",u:"https://www.myfloridalegal.com/victimprograms"},
+ GA:{none:1},
+ HI:{n:"Address Confidentiality Program",u:""},
+ ID:{n:"Address Confidentiality Program",u:"https://sos.idaho.gov/acp/"},
+ IL:{n:"Address Confidentiality Program",u:"https://illinoisattorneygeneral.gov/safer-communities/supporting-victims-of-crime/address-confidentiality-program/"},
+ IN:{n:"Address Confidentiality Program",u:"https://www.in.gov/attorneygeneral/about-the-office/appeals/victim-services/address-confidentiality-program/"},
+ IA:{n:"Safe at Home",u:"https://safeathome.iowa.gov/"},
+ KS:{n:"Safe at Home",u:"https://www.ag.ks.gov/divisions/victim-services/safe-at-home"},
+ KY:{n:"Safe at Home",u:"https://www.sos.ky.gov/safe-at-home/Pages/About-Safe-At-Home.aspx"},
+ LA:{n:"Address Confidentiality Program",u:"https://www.sos.la.gov/OurOffice/AddressConfidentialityProgram"},
+ ME:{n:"Address Confidentiality Program",u:"https://www.maine.gov/sos/acp/index.html"},
+ MD:{n:"Safe at Home",u:"https://sos.maryland.gov/ACP/Pages/default.aspx"},
+ MA:{n:"Address Confidentiality Program",u:"https://www.sec.state.ma.us/divisions/acp/address-confidentiality-program.htm"},
+ MI:{n:"Address Confidentiality Program",u:"https://www.michigan.gov/ag/initiatives/address-confidentiality-program"},
+ MN:{n:"Safe at Home",u:"https://www.sos.mn.gov/safe-at-home"},
+ MS:{n:"Address Confidentiality Program (Attorney General's Bureau of Victim Assistance)",u:""},
+ MO:{n:"Safe at Home",u:"https://www.mosafeathome.com/"},
+ MT:{n:"Address Confidentiality Program",u:"https://dojmt.gov/victim-services/address-confidentiality-program/"},
+ NE:{n:"Address Confidentiality Program",u:"https://sos.nebraska.gov/node/21"},
+ NV:{n:"Confidential Address Program",u:"https://dcfs.nv.gov/Programs/CAP/CONFIDENTIAL_ADDRESS_PROGRAM/"},
+ NH:{n:"Address Confidentiality Program",u:"https://www.doj.nh.gov/bureaus/office-victim-witness-assistance/address-confidentiality-program"},
+ NJ:{n:"Address Confidentiality Program",u:"https://www.nj.gov/dcf/women/acp/"},
+ NM:{n:"Safe at Home",u:"https://www.sos.nm.gov/safe-at-home/"},
+ NY:{n:"Address Confidentiality Program",u:"https://dos.ny.gov/address-confidentiality"},
+ NC:{n:"Address Confidentiality Program",u:"https://ncdoj.gov/public-protection/address-confidentiality-program/"},
+ ND:{none:1},
+ OH:{n:"Safe at Home",u:"https://www.ohiosos.gov/secretary-office/office-initiatives/safe-at-home/"},
+ OK:{n:"Address Confidentiality Program",u:"https://oklahoma.gov/oag/about/divisions/victim-advocacy-and-services-unit/acp.html"},
+ OR:{n:"Address Confidentiality Program",u:"https://www.doj.state.or.us/crime-victims/victims-resources/victims-services/address-confidentiality-program-acp/"},
+ PA:{n:"Address Confidentiality Program",u:"https://www.pa.gov/en/agencies/ova/address-confidentiality.html"},
+ RI:{n:"Address Confidentiality Program",u:"https://www.sos.ri.gov/AddressConfidentialityProgram"},
+ SC:{none:1},SD:{none:1},
+ TN:{n:"Safe at Home",u:"https://sos.tn.gov/safeathome"},
+ TX:{n:"Address Confidentiality Program",u:"https://www.texasattorneygeneral.gov/crime-victims/victims-violent-crime/address-confidentiality-program"},
+ UT:{n:"Safe at Home",u:"https://safeathome.utah.gov/"},
+ VT:{n:"Safe at Home",u:"https://sos.vermont.gov/secretary-of-state-services/safe-at-home/"},
+ VA:{n:"Address Confidentiality Program",u:"https://www.oag.state.va.us/programs-outreach/domestic-violence/address-confidentiality-program"},
+ WA:{n:"Address Confidentiality Program",u:"https://www.sos.wa.gov/acp/"},
+ WV:{n:"Address Confidentiality Program",u:"https://sos.wv.gov/adminlaw/Pages/ACP.aspx"},
+ WI:{n:"Safe at Home",u:"https://www.wisdoj.gov/Pages/CrimeVictimServices/safe-at-home-address-confidentiality-program.aspx"},
+ WY:{none:1}
+};
+/* Official directory of every state's program, used when a state page isn't listed */
+window.OOK_ACP_DIRECTORY="https://www.maine.gov/sos/about-us/other-states-address-confidentiality-programs";

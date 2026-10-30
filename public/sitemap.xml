@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://optoutkit.org/</loc></url>
-  <url><loc>https://optoutkit.org/remove</loc></url>
-  <url><loc>https://optoutkit.org/lockdown</loc></url>
-  <url><loc>https://optoutkit.org/bigtech</loc></url>
-  <url><loc>https://optoutkit.org/tools</loc></url>
-  <url><loc>https://optoutkit.org/rights</loc></url>
-  <url><loc>https://optoutkit.org/faq</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://optoutkit.org/</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/"/></url>
+  <url><loc>https://optoutkit.org/es/</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/"/></url>
+  <url><loc>https://optoutkit.org/remove</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/remove"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/remove"/></url>
+  <url><loc>https://optoutkit.org/es/remove</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/remove"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/remove"/></url>
+  <url><loc>https://optoutkit.org/lockdown</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/lockdown"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/lockdown"/></url>
+  <url><loc>https://optoutkit.org/es/lockdown</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/lockdown"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/lockdown"/></url>
+  <url><loc>https://optoutkit.org/bigtech</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/bigtech"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/bigtech"/></url>
+  <url><loc>https://optoutkit.org/es/bigtech</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/bigtech"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/bigtech"/></url>
+  <url><loc>https://optoutkit.org/tools</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/tools"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/tools"/></url>
+  <url><loc>https://optoutkit.org/es/tools</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/tools"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/tools"/></url>
+  <url><loc>https://optoutkit.org/rights</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/rights"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/rights"/></url>
+  <url><loc>https://optoutkit.org/es/rights</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/rights"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/rights"/></url>
+  <url><loc>https://optoutkit.org/safety</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/safety"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/safety"/></url>
+  <url><loc>https://optoutkit.org/es/safety</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/safety"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/safety"/></url>
+  <url><loc>https://optoutkit.org/faq</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/faq"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/faq"/></url>
+  <url><loc>https://optoutkit.org/es/faq</loc><xhtml:link rel="alternate" hreflang="en" href="https://optoutkit.org/faq"/><xhtml:link rel="alternate" hreflang="es" href="https://optoutkit.org/es/faq"/></url>
 </urlset>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Respuestas sobre Opt Out Kit: privacidad, cómo funciona la revisión de contraseñas, dónde se guarda su progreso y cómo funcionan las bajas en los sitios de búsqueda de personas.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Preguntas · Opt Out Kit</title>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://optoutkit.org/es/faq">
+<link rel="alternate" hreflang="en" href="https://optoutkit.org/faq">
+<link rel="alternate" hreflang="es" href="https://optoutkit.org/es/faq">
+<link rel="alternate" hreflang="x-default" href="https://optoutkit.org/faq">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <nav class="toplinks" aria-label="Sitio">
+    <a href="/es/">Inicio</a><a href="/es/remove">Quitar perfiles</a><a href="/es/lockdown">Proteja sus datos</a><a href="/es/bigtech">Grandes tecnológicas</a><a href="/es/tools">Herramientas</a><a href="/es/rights">Sus derechos</a><a href="/es/safety">Seguridad</a><a href="/es/faq" aria-current="page">Preguntas</a><a class="lang" href="/faq" hreflang="en" lang="en">English</a>
+  </nav>
+  <h1>Preguntas</h1>
+  <p class="lede">Respuestas breves sobre cómo funciona Opt Out Kit y qué hace con su información. Toque una pregunta para abrirla.</p>
+</header>
+
+<section aria-labelledby="h-privacy">
+  <h2 id="h-privacy">Privacidad</h2>
+  <div class="faq">
+    <details>
+      <summary>¿De verdad es gratis?</summary>
+      <p>Sí. Sin cuenta, sin anuncios, sin versión de pago y nada que mejorar.</p>
+    </details>
+    <details id="paid-for" hidden>
+      <summary>¿Es una organización sin fines de lucro? ¿Cómo se financia?</summary>
+      <div id="support-faq"></div>
+    </details>
+    <details>
+      <summary>¿Este sitio me rastrea?</summary>
+      <p>No. No hay cookies, analíticas ni rastreadores de anuncios. La configuración de seguridad de la página le indica a su navegador que bloquee cualquier conexión excepto la revisión de contraseñas, así que lo garantiza su navegador, no solo nuestra palabra.</p>
+      <p>Como todo sitio web, está alojado en algún lugar: Cloudflare entrega la página y maneja los datos normales de conexión que ve cualquier servicio de alojamiento. Solo miramos el total de visitas, nunca a visitantes individuales.</p>
+    </details>
+    <details>
+      <summary>¿Pueden ver la contraseña que escribo?</summary>
+      <p>No. Su navegador convierte la contraseña en un código de 40 caracteres (un hash SHA-1) y envía solo los primeros 5 caracteres a Have I Been Pwned. El servicio devuelve todos los códigos filtrados que empiezan con esos 5 caracteres, a menudo cientos, y su navegador busca la coincidencia en su dispositivo. Ni nosotros ni Have I Been Pwned conocemos su contraseña.</p>
+    </details>
+    <details>
+      <summary>¿Por qué la revisión del correo me envía a otro sitio?</summary>
+      <p>Revisar un correo significa enviar la dirección misma, y preferimos no manejarla nunca. Have I Been Pwned es la base de datos de filtraciones más usada. Su búsqueda gratuita es todo lo que necesita; no haga caso de los planes de pago ni de las ofertas de protección.</p>
+    </details>
+    <details>
+      <summary>¿Puedo reutilizar el código?</summary>
+      <p>Sí. Es de código abierto bajo la licencia <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">GNU AGPL-3.0</a>. Puede copiarlo y modificarlo, pero si publica una versión modificada como sitio web, debe publicar sus cambios bajo la misma licencia. Así cada copia queda tan abierta y verificable como esta.</p>
+    </details>
+    <details>
+      <summary>¿Cómo puedo comprobar todo esto yo mismo?</summary>
+      <p>El código fuente completo es <a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">público en GitHub</a>. También puede analizar el sitio en <a href="https://securityheaders.com/?q=optoutkit.org" target="_blank" rel="noopener noreferrer">securityheaders.com</a> para ver sus reglas de seguridad, o abrir las herramientas para desarrolladores de su navegador y mirar la red: la única conexión externa es la consulta de 5 caracteres de la contraseña.</p>
+    </details>
+  </div>
+</section>
+
+<section aria-labelledby="h-checklist">
+  <h2 id="h-checklist">Las listas</h2>
+  <div class="faq">
+    <details>
+      <summary>¿Dónde se guarda mi progreso?</summary>
+      <p>Solo en este navegador y en este dispositivo. No se envía a ninguna parte. Si borra los datos del sitio en su navegador se pierde, y las ventanas privadas o de incógnito no lo guardan.</p>
+      <p>Para tener una copia o seguir en otro teléfono o computadora, toque <strong>Exportar progreso</strong> en la <a href="/es/#keep">página de inicio</a> para guardar un archivo, y luego <strong>Importar progreso</strong> en el otro dispositivo. Cubre todas las listas.</p>
+    </details>
+    <details>
+      <summary>¿Por qué tengo que actualizar la lista yo mismo?</summary>
+      <p>Revisar los sitios de forma automática significaría que un servidor enviara su nombre y su dirección a cada sitio de búsqueda de personas, justo lo que esta herramienta evita. Además, los sitios le piden confirmar cada eliminación usted mismo, con enlaces por correo, captchas o códigos por teléfono, así que ninguna herramienta puede terminar el trabajo sin sus datos.</p>
+    </details>
+    <details>
+      <summary>¿Qué significan las fechas?</summary>
+      <p>Cada sitio muestra la fecha en que cambió su estado por última vez. Cuando marca una solicitud como enviada, también se guarda esa fecha, y a los 60 días el sitio se marca para que revise si lo volvieron a publicar.</p>
+    </details>
+    <details>
+      <summary>¿Qué significa “Prioridad”?</summary>
+      <p>Son los sitios de búsqueda de personas más usados, y varios comparten datos con otros. Empiece por ahí para lograr el mayor efecto.</p>
+    </details>
+  </div>
+</section>
+
+<section aria-labelledby="h-ai">
+  <h2 id="h-ai">Ayuda de su asistente de IA</h2>
+  <div class="faq">
+    <details>
+      <summary>¿Un asistente de IA puede recordarme que vuelva a revisar los sitios?</summary>
+      <p>Sí. En la <a href="/es/#keep">página de inicio</a>, toque <strong>Copiar resumen para mi asistente de IA</strong> y péguelo en ChatGPT, Claude, Gemini u otro. El resumen indica el estado y la fecha de revisión de cada sitio, más lo que falta en sus otras listas, y le pide al asistente que programe recordatorios. No se envía nada hasta que usted lo pega.</p>
+      <p>¿No tiene asistente? <strong>Agregar recordatorios a mi calendario</strong> guarda un archivo de calendario con un recordatorio por sitio, 60 días después de cada solicitud.</p>
+    </details>
+    <details>
+      <summary>¿Una IA puede comprobar que un enlace para darse de baja es seguro?</summary>
+      <p>Sí. La <a href="/brokers.json">lista de sitios</a> está publicada como datos, con los dominios oficiales de cada uno. Un asistente puede confirmar que un enlace va al sitio real y no a una imitación. Además, cada enlace del sitio se prueba automáticamente cada semana.</p>
+    </details>
+    <details>
+      <summary>¿Hay una habilidad (skill) para Claude?</summary>
+      <p>Sí. <a href="/opt-out-kit-skill.zip" download>Descargue la habilidad de Opt Out Kit</a> (en inglés) y en Claude vaya a Personalizar &gt; Habilidades para subir el archivo. Claude sabrá programar recordatorios, verificar enlaces, explicar formularios y redactar solicitudes. Nunca llena formularios por usted ni le pide números de identificación.</p>
+    </details>
+    <details>
+      <summary>¿Una IA llenará los formularios de baja por mí?</summary>
+      <p>No, y no debería permitirlo. Los formularios necesitan su propia confirmación, y si los maneja usted, sus datos solo van a donde usted decida.</p>
+    </details>
+  </div>
+</section>
+
+<section aria-labelledby="h-optout">
+  <h2 id="h-optout">Darse de baja</h2>
+  <div class="faq">
+    <details>
+      <summary>¿Tengo que pagar para que me eliminen?</summary>
+      <p>No. Darse de baja siempre es gratis. Si un sitio lo hace esperar mientras “prepara un informe”, le pide pago o le ofrece una verificación de antecedentes, está en una página de ventas. Use el enlace de la <a href="/es/remove">lista</a>.</p>
+    </details>
+    <details>
+      <summary>¿Qué información me pedirán los sitios?</summary>
+      <p>Normalmente un correo electrónico para confirmar la solicitud, y a veces un teléfono, la fecha de nacimiento o el enlace a su perfil. Dé solo lo que el formulario exige. Un correo aparte, solo para darse de baja, mantiene su bandeja principal fuera de sus sistemas.</p>
+    </details>
+    <details>
+      <summary>¿Cuánto tarda la eliminación?</summary>
+      <p>La mayoría de los sitios actúan en unos días o unas semanas. Revise de nuevo después del plazo que indique el sitio y márquelo como Eliminado.</p>
+    </details>
+    <details>
+      <summary>¿Por qué volvió a aparecer mi perfil?</summary>
+      <p>Los sitios de búsqueda de personas reconstruyen sus registros con registros públicos y otras fuentes, así que los perfiles pueden reaparecer. Por eso la lista marca las solicitudes de más de 60 días para que las revise de nuevo.</p>
+    </details>
+    <details>
+      <summary>¿Esto me quita de Google?</summary>
+      <p>No directamente. Cuando se elimina un perfil, poco a poco deja de salir en los resultados. Para acelerarlo, o para quitar resultados que muestran su teléfono, dirección o correo, use “Resultados sobre ti” de Google, que está en la página <a href="/es/lockdown">Proteja sus datos</a>.</p>
+    </details>
+    <details>
+      <summary>¿Cuándo conviene una solicitud por escrito en lugar de un formulario?</summary>
+      <p>Use un borrador cuando un sitio solo acepta solicitudes por correo, o con empresas que no tienen formulario, como los corredores de datos de marketing. Los residentes de California pueden usar la versión de eliminación, que cita la ley estatal y el plazo de respuesta de 45 días. Los residentes del Reino Unido y la UE pueden usar la versión de supresión. Los borradores se crean en su navegador y nada de lo que escribe se guarda ni se envía; usted envía el correo.</p>
+    </details>
+    <details>
+      <summary>¿Y Google, Amazon y Facebook?</summary>
+      <p>Son distintos de los sitios de búsqueda de personas: usted es su cliente, así que guardan los datos de su cuenta mientras los use. Aun así puede reducir lo que guardan e impedir que lo usen para anuncios. La <a href="/es/bigtech">lista de grandes tecnológicas</a> enlaza a las instrucciones de cada empresa.</p>
+    </details>
+    <details>
+      <summary>¿Debería pagar un servicio de eliminación?</summary>
+      <p>Los servicios de pago envían estas mismas solicitudes por usted y las repiten periódicamente. Ahorran tiempo, pero no hacen nada que usted no pueda hacer gratis aquí. Si su tiempo le importa más que el costo, son una opción razonable.</p>
+    </details>
+    <details>
+      <summary>¿Mi estado tiene una ley de privacidad?</summary>
+      <p>Más de 20 estados ya tienen una, y otras entran en vigor hasta 2028. <a href="/es/rights">Elija su estado</a> para ver qué le permite hacer, redactar una solicitud que la cite o escribirles a sus representantes si su estado aún no tiene una.</p>
+    </details>
+    <details>
+      <summary>¿Funciona fuera de Estados Unidos?</summary>
+      <p>La mayoría de los sitios de la lista cubren a residentes de EE. UU. Si vive en el Reino Unido o la UE, la ley de protección de datos le da derecho a pedir a cualquier empresa que borre sus datos personales.</p>
+    </details>
+    <details>
+      <summary>Un enlace no funciona. ¿Qué hago?</summary>
+      <p>Estos sitios cambian sus páginas de baja a menudo. Busque “opt out” o “remove” en el sitio, y por favor avísenos del enlace roto en <a href="https://github.com/forbidden-cackle9/optoutkit/issues" target="_blank" rel="noopener noreferrer">GitHub</a> para arreglarlo.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p class="support-slot small" hidden></p>
+  <p><a href="/es/">Inicio</a> · <a href="/es/remove">Quitar perfiles</a> · <a href="/es/lockdown">Proteja sus datos</a> · <a href="/es/bigtech">Grandes tecnológicas</a> · <a href="/es/tools">Herramientas</a> · <a href="/es/rights">Sus derechos</a> · <a href="/es/safety">Seguridad</a> · <a href="/es/faq">Preguntas</a></p>
+  <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Código fuente en GitHub</a> · Código abierto bajo la licencia <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
+</footer>
+</div>
+<script src="/common.js"></script>
+<script src="/funding.js"></script>
+<script src="/support.js"></script>
+</body>
+</html>

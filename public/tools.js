@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var O=window.OOK,el=O.el,link=O.link,today=O.today;
+var O=window.OOK,el=O.el,link=O.link,today=O.today,T=O.t;
 /* ---------- Password check (k-anonymity) ---------- */
 var pw=document.getElementById("pw"),view=document.getElementById("hashview"),out=document.getElementById("pwresult");
 function sha1hex(str){
@@ -9,11 +9,11 @@ function sha1hex(str){
 }
 function showPrefix(prefix){
   view.textContent="";
-  if(!prefix){view.appendChild(el("span",{"class":"sent"},"5BAA6"));view.appendChild(el("span",{"class":"kept"},"·".repeat(35)));view.appendChild(document.createTextNode(" "));view.appendChild(el("span",{"class":"muted small"},'(example: the word "password")'));return;}
+  if(!prefix){view.appendChild(el("span",{"class":"sent"},"5BAA6"));view.appendChild(el("span",{"class":"kept"},"·".repeat(35)));view.appendChild(document.createTextNode(" "));view.appendChild(el("span",{"class":"muted small"},T('(example: the word "password")','(ejemplo: la palabra "password")')));return;}
   view.appendChild(el("span",{"class":"sent"},prefix));
   view.appendChild(el("span",{"class":"kept"},"·".repeat(35)));
   view.appendChild(document.createTextNode(" "));
-  view.appendChild(el("span",{"class":"muted small"},"Only the highlighted 5 characters leave your device. The other 35 stay here."));
+  view.appendChild(el("span",{"class":"muted small"},T("Only the highlighted 5 characters leave your device. The other 35 stay here.","Solo los 5 caracteres resaltados salen de su dispositivo. Los otros 35 se quedan aquí.")));
 }
 var seq=0;
 pw.addEventListener("input",function(){
@@ -37,24 +37,24 @@ function result(kind,title,body,linkHref,linkText){
 }
 document.getElementById("pwform").addEventListener("submit",function(ev){
   ev.preventDefault();
-  if(!pw.value){result("warn","Type a password first.","");return;}
-  var go=document.getElementById("pwgo");go.disabled=true;go.textContent="Checking…";
+  if(!pw.value){result("warn",T("Type a password first.","Primero escriba una contraseña."),"");return;}
+  var go=document.getElementById("pwgo");go.disabled=true;go.textContent=T("Checking…","Revisando…");
   sha1hex(pw.value).then(function(h){
     var prefix=h.slice(0,5),suffix=h.slice(5);
     return fetch("https://api.pwnedpasswords.com/range/"+prefix,{headers:{"Add-Padding":"true"},referrerPolicy:"no-referrer",credentials:"omit"})
       .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text();})
       .then(function(body){
         var n=countFor(body,suffix);
-        if(n>0)result("bad","Found in "+n.toLocaleString()+" leaked passwords.","Stop using it anywhere. Attackers try leaked passwords first. A password manager makes unique passwords easy.");
-        else result("ok","Not found in known breaches.","That's good, but not a guarantee. Use it on only one site.");
+        if(n>0)result("bad",T("Found in "+O.num(n)+" leaked passwords.","Aparece en "+O.num(n)+" contraseñas filtradas."),T("Stop using it anywhere. Attackers try leaked passwords first. A password manager makes unique passwords easy.","Deje de usarla en todas partes. Los atacantes prueban primero las contraseñas filtradas. Un administrador de contraseñas facilita tener una distinta para cada sitio."));
+        else result("ok",T("Not found in known breaches.","No aparece en filtraciones conocidas."),T("That's good, but not a guarantee. Use it on only one site.","Es una buena señal, pero no una garantía. Úsela en un solo sitio."));
       });
   }).catch(function(){
-    result("warn","Couldn't reach the breach database from here.","This preview blocks outside connections. Once the page is on its own website, the check runs here. For now, use Have I Been Pwned's own checker, which works the same private way:","https://haveibeenpwned.com/Passwords","Check on Have I Been Pwned");
-  }).then(function(){go.disabled=false;go.textContent="Check";});
+    result("warn",T("Couldn't reach the breach database.","No se pudo conectar con la base de datos de filtraciones."),T("Your connection may be blocking it. You can use Have I Been Pwned's own checker, which works the same private way:","Puede que su conexión la esté bloqueando. Puede usar el verificador de Have I Been Pwned, que funciona de la misma forma privada:"),"https://haveibeenpwned.com/Passwords",T("Check on Have I Been Pwned","Revisar en Have I Been Pwned"));
+  }).then(function(){go.disabled=false;go.textContent=T("Check","Revisar");});
 });
 document.getElementById("pwclear").addEventListener("click",function(){pw.value="";seq++;showPrefix("");out.hidden=true;pw.focus();});
 var showBtn=document.getElementById("pwshow");
-showBtn.addEventListener("click",function(){var on=pw.type==="password";pw.type=on?"text":"password";showBtn.textContent=on?"Hide":"Show";showBtn.setAttribute("aria-pressed",String(on));});
+showBtn.addEventListener("click",function(){var on=pw.type==="password";pw.type=on?"text":"password";showBtn.textContent=on?T("Hide","Ocultar"):T("Show","Mostrar");showBtn.setAttribute("aria-pressed",String(on));});
 /* ---------- Removal request drafts (nothing stored or sent) ---------- */
 var DR={mylife:{co:"MyLife",addr:"privacy@mylife.com"},usphonebook:{co:"USPhoneBook",addr:"support+optout@usphonebook.com"}};
 function v(id){return document.getElementById(id).value.trim();}
@@ -88,15 +88,15 @@ function draft(){
   document.getElementById("dr-status").textContent="";
 }
 (function(){var sel=document.getElementById("dr-state"),t=today();
-  (window.OOK_STATES||[]).forEach(function(x){if(x.law&&x.eff<=t&&x.c!=="CA"){var o=el("option",{value:x.c},x.n);sel.appendChild(o);}});})();
+  (window.OOK_STATES||[]).forEach(function(x){if(x.law&&x.eff<=t&&x.c!=="CA"){var o=el("option",{value:x.c},O.f(x,"n"));sel.appendChild(o);}});})();
 ["dr-to","dr-type","dr-state","dr-co","dr-addr","dr-name","dr-place","dr-link"].forEach(function(id){var e=document.getElementById(id);e.addEventListener("input",draft);e.addEventListener("change",draft);});
 document.getElementById("drform").addEventListener("submit",function(e){e.preventDefault();});
-document.getElementById("dr-mail").addEventListener("click",function(e){if(this.getAttribute("aria-disabled")){e.preventDefault();document.getElementById("dr-status").textContent="Add the company's email address first.";}});
+document.getElementById("dr-mail").addEventListener("click",function(e){if(this.getAttribute("aria-disabled")){e.preventDefault();document.getElementById("dr-status").textContent=T("Add the company's email address first.","Primero agregue el correo electrónico de la empresa.");}});
 document.getElementById("dr-copy").addEventListener("click",function(){
   var t=document.getElementById("dr-out"),st=document.getElementById("dr-status");
-  function ok(){st.textContent="Copied.";}
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(ok,function(){t.select();st.textContent="Selected. Copy it with your device's copy command.";});}
-  else{t.select();st.textContent="Selected. Copy it with your device's copy command.";}
+  function ok(){st.textContent=T("Copied.","Copiado.");}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(ok,function(){t.select();st.textContent=T("Selected. Copy it with your device's copy command.","Seleccionado. Cópielo con la función de copiar de su dispositivo.");});}
+  else{t.select();st.textContent=T("Selected. Copy it with your device's copy command.","Seleccionado. Cópielo con la función de copiar de su dispositivo.");}
 });
 draft();
 /* Deep link from the rights page: /tools#draft-XX preselects a state-law request */

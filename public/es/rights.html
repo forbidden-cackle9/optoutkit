@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Vea qué derechos de privacidad le da su estado, cómo usarlos y cómo pedir protecciones más fuertes a nivel estatal y nacional.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sus derechos · Opt Out Kit</title>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://optoutkit.org/es/rights">
+<link rel="alternate" hreflang="en" href="https://optoutkit.org/rights">
+<link rel="alternate" hreflang="es" href="https://optoutkit.org/es/rights">
+<link rel="alternate" hreflang="x-default" href="https://optoutkit.org/rights">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <nav class="toplinks" aria-label="Sitio">
+    <a href="/es/">Inicio</a><a href="/es/remove">Quitar perfiles</a><a href="/es/lockdown">Proteja sus datos</a><a href="/es/bigtech">Grandes tecnológicas</a><a href="/es/tools">Herramientas</a><a href="/es/rights" aria-current="page">Sus derechos</a><a href="/es/safety">Seguridad</a><a href="/es/faq">Preguntas</a><a class="lang" href="/rights" hreflang="en" lang="en">English</a>
+  </nav>
+  <h1>Sus derechos y cómo participar</h1>
+  <p class="lede">Vea qué le permite hacer la ley de privacidad de su estado, úsela y ayude a fortalecer las reglas donde vive y a nivel nacional. La elección de estado ocurre en su navegador; no se envía nada.</p>
+</header>
+
+<section aria-labelledby="st-h">
+  <div><span class="label">Su estado</span><h2 id="st-h">¿Cuáles son mis derechos?</h2></div>
+  <p>Toque su estado en el mapa o elíjalo de la lista. Los colores muestran qué tan bien protege cada lugar a sus residentes frente a las empresas, comparado con la ley de privacidad de Europa.</p>
+  <div id="map" class="map"></div>
+  <div class="legend" aria-hidden="true"><span>Menos protección</span><span class="ramp"></span><span>Más protección</span></div>
+  <label class="fld"><span class="label">Elija su estado</span>
+    <select id="st-pick"><option value="">Seleccione un estado</option></select></label>
+  <div id="st-out" aria-live="polite" hidden></div>
+</section>
+
+<section aria-labelledby="cmp-h">
+  <div><span class="label">Comparar</span><h2 id="cmp-h">Cómo se comparan los estados</h2></div>
+  <p class="small muted">Puntaje de consumidor: protección frente a empresas, sobre 30. Puntaje de gobierno: derechos constitucionales de privacidad y límites al acceso policial a los datos, sobre 6. Toque una columna para ordenar.</p>
+  <div class="tablewrap"><table class="rank" id="rank">
+    <thead><tr><th><button type="button" data-k="rank">Puesto</button></th><th><button type="button" data-k="name">Lugar</button></th><th><button type="button" data-k="cons">Consumidor</button></th><th><button type="button" data-k="gov">Gobierno</button></th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <details class="method" id="method">
+    <summary>Cómo calculamos el puntaje</summary>
+    <p>Usamos como referencia el Reglamento General de Protección de Datos de la Unión Europea, la ley de privacidad más copiada del mundo. Cada lugar recibe de 0 a 3 puntos en once criterios. La aplicación de la ley cuenta doble, porque una ley fuerte que nadie hace cumplir no protege a nadie. Las protecciones frente al gobierno se puntúan aparte para que no oculten qué tan bien lo protege un lugar frente a las empresas.</p>
+    <ul class="also" id="crit-list"></ul>
+    <p><strong>De dónde salen los datos:</strong> los seguimientos de leyes estatales de ClauseAudit, Morgan Lewis y MultiState, para saber qué leyes existen y cuándo entran en vigor; la revisión de aplicación de 2025 del Future of Privacy Forum y MultiState, para las sanciones; la ACLU y EPIC, para el acceso policial a datos de ubicación; y DLA Piper, para las leyes de aviso de filtraciones.</p>
+    <p><strong>Límites:</strong> muchos puntajes son juicios, explicados en las notas de cada lugar. Los lugares con una ley amplia y sin diferencias notables reciben el puntaje estándar para ese tipo de ley. Los puntajes de acceso policial se basan sobre todo en un estudio de 2015 y pueden no incluir leyes más recientes. La aplicación de la ley refleja acciones públicas hasta 2025, así que los estados con leyes nuevas quizá simplemente no han actuado aún. Los puntajes reflejan las leyes vigentes al <span class="rev"></span>.</p>
+    <p><a href="/us-privacy-ranking.xlsx" download>Descargue la hoja de cálculo completa</a> (en inglés) con cada puntaje y nota. ¿Vio un error? <a href="https://github.com/forbidden-cackle9/optoutkit/issues" target="_blank" rel="noopener noreferrer">Avísenos en GitHub</a>.</p>
+  </details>
+</section>
+
+<section aria-labelledby="lt-h">
+  <div><span class="label">Haga oír su voz</span><h2 id="lt-h">Escríbales a sus representantes</h2></div>
+  <p>Los legisladores escuchan a los cabilderos de los corredores de datos todo el tiempo, y a los residentes comunes mucho menos. Una carta breve y personal de alguien de su distrito sí se lee. Parta de este borrador y cambie lo que quiera; la carta es suya.</p>
+  <form id="ltform" class="drform" autocomplete="off">
+    <label class="fld"><span class="label">Enviar a</span>
+      <select id="lt-to">
+        <option value="state">Mis legisladores estatales</option>
+        <option value="federal">Mis representantes en el Congreso</option>
+      </select></label>
+    <label class="fld"><span class="label">Idioma de la carta</span>
+      <select id="lt-lang">
+        <option value="es">Español</option>
+        <option value="en">Inglés</option>
+      </select></label>
+    <label class="fld"><span class="label">Su estado</span><select id="lt-state"><option value="">Seleccione un estado</option></select></label>
+    <label class="fld"><span class="label">Su nombre</span><input type="text" id="lt-name" placeholder="Nombre completo"></label>
+    <label class="fld"><span class="label">Ciudad o pueblo</span><input type="text" id="lt-city" placeholder="Muestra que vive en su distrito"></label>
+    <label class="fld"><span class="label">Por qué le importa <span class="muted">(opcional)</span></span><textarea id="lt-why" rows="3" placeholder="Por ejemplo: encontré mi dirección en seis sitios de búsqueda de personas."></textarea></label>
+  </form>
+  <div>
+    <div class="label">Borrador</div>
+    <textarea id="lt-out" rows="12" readonly aria-label="Borrador de la carta"></textarea>
+  </div>
+  <div class="row">
+    <button type="button" class="primary" id="lt-copy">Copiar carta</button>
+    <span class="small muted" id="lt-status" aria-live="polite"></span>
+  </div>
+  <div>
+    <div class="label">Averigüe quién lo representa</div>
+    <ul class="also">
+      <li><a href="https://openstates.org/find_your_legislator/" target="_blank" rel="noopener noreferrer">Legisladores estatales (buscador de Open States)</a></li>
+      <li><a href="https://www.congress.gov/members/find-your-member" target="_blank" rel="noopener noreferrer">Miembros del Congreso (Congress.gov)</a></li>
+    </ul>
+    <p class="small muted">Estos buscadores piden su dirección en sus propios sitios (en inglés); nosotros nunca la vemos. Sus páginas indican correos y formularios de contacto. Llamar a la oficina también funciona.</p>
+  </div>
+</section>
+
+<section aria-labelledby="gi-h">
+  <div><span class="label">Más opciones</span><h2 id="gi-h">Otras formas de participar</h2></div>
+  <ul class="also">
+    <li><strong>Comente las reglas propuestas.</strong> Cuando las agencias redactan reglas de privacidad, aceptan comentarios del público, y pocas personas los envían, así que cada uno cuenta. Las propuestas federales están en <a href="https://www.regulations.gov/" target="_blank" rel="noopener noreferrer">Regulations.gov</a>. La agencia de privacidad de California publica sus <a href="https://cppa.ca.gov/regulations/" target="_blank" rel="noopener noreferrer">reglamentos en trámite</a>; los fiscales generales de otros estados publican los suyos en sus propios sitios.</li>
+    <li><strong>Siga los proyectos de ley de privacidad.</strong> Busque “privacy” o “data broker” en <a href="https://www.congress.gov/" target="_blank" rel="noopener noreferrer">Congress.gov</a> para los proyectos federales y en <a href="https://openstates.org/" target="_blank" rel="noopener noreferrer">Open States</a> para los de su estado.</li>
+    <li><strong>Hable en una audiencia.</strong> Las legislaturas estatales hacen audiencias públicas sobre los proyectos, y muchas aceptan testimonios por escrito de los residentes. El sitio de su legislatura publica el calendario.</li>
+    <li><strong>Apoye una iniciativa de ley.</strong> En los estados que lo permiten, los residentes pueden someter una ley directamente a votación. Así empezó la ley de privacidad de California.</li>
+    <li><strong>Apoye a los grupos que hacen este trabajo</strong>, que aparecen abajo.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="gr-h">
+  <div><span class="label">Recursos</span><h2 id="gr-h">Grupos que trabajan por la privacidad</h2></div>
+  <p class="small muted">Los incluimos como recursos. No respaldamos todas sus posturas. Sus sitios están en inglés.</p>
+  <ul class="also">
+    <li><a href="https://www.eff.org/" target="_blank" rel="noopener noreferrer"><strong>Electronic Frontier Foundation</strong></a>: trabajo legal sobre derechos digitales, guías y alertas para actuar.</li>
+    <li><a href="https://epic.org/" target="_blank" rel="noopener noreferrer"><strong>EPIC</strong></a> (Electronic Privacy Information Center): investigación y defensa de políticas de privacidad.</li>
+    <li><a href="https://advocacy.consumerreports.org/" target="_blank" rel="noopener noreferrer"><strong>Consumer Reports</strong></a>: defensa del consumidor, incluidas leyes de privacidad estatales y federales.</li>
+    <li><a href="https://privacyrights.org/" target="_blank" rel="noopener noreferrer"><strong>Privacy Rights Clearinghouse</strong></a>: guías sencillas para consumidores e información sobre corredores de datos.</li>
+  </ul>
+</section>
+
+<footer>
+  <p class="support-slot small" hidden></p>
+  <p>Información de leyes estatales revisada el <span id="reviewed">30 de octubre de 2026</span>, recopilada de seguimientos legales públicos. Las leyes cambian en cada sesión, así que confirme en las fuentes oficiales de su estado antes de confiar en un detalle, y <a href="https://github.com/forbidden-cackle9/optoutkit/issues" target="_blank" rel="noopener noreferrer">avísenos si algo está desactualizado</a>. Esta página es información general, no asesoría legal.</p>
+  <p><a href="/es/">Inicio</a> · <a href="/es/remove">Quitar perfiles</a> · <a href="/es/lockdown">Proteja sus datos</a> · <a href="/es/bigtech">Grandes tecnológicas</a> · <a href="/es/tools">Herramientas</a> · <a href="/es/rights">Sus derechos</a> · <a href="/es/safety">Seguridad</a> · <a href="/es/faq">Preguntas</a></p>
+  <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Código fuente en GitHub</a> · Código abierto bajo la licencia <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
+</footer>
+</div>
+<script src="/common.js"></script>
+<script src="/funding.js"></script>
+<script src="/support.js"></script>
+<script src="/states.js"></script>
+<script src="/scores.js"></script>
+<script src="/rights.js"></script>
+</body>
+</html>

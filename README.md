@@ -7,6 +7,8 @@ Source for [optoutkit.org](https://optoutkit.org): a free page for checking leak
 - Checklist progress is saved only in the visitor's browser.
 
 ## Layout
+- `public/es/` — Spanish versions of every page. Scripts and data are shared: text comes from `OOK.t("English","Español")` in scripts and `*_es` fields in the data files. When you change a page, change its Spanish copy too.
+- `public/safety.html` (+ `safety.js`, `safety-data.js`) — hotlines and address confidentiality programs by state; review each January.
 - `public/brokers.json`, `llms.txt`, `robots.txt`, `sitemap.xml` — machine-readable info for search engines and AI assistants
 - `public/opt-out-kit-skill.zip` — downloadable Claude skill, built from `skill/opt-out-kit/`
 - `tools/sync.py` — run after editing `brokers-data.js`: regenerates `brokers.json` and the skill zip

@@ -30,6 +30,48 @@ CRIT=[ # key, name, measures, group, weight, scoring guide
 ]
 K=[c[0] for c in CRIT]
 
+# Spanish text for the site (the spreadsheet stays in English)
+CRIT_ES={
+ "law":("Ley integral","Una ley que cubre la mayoría de las empresas y sectores","3 ley amplia vigente · 1 ley limitada, o aprobada pero aún no vigente · 0 ninguna"),
+ "collect":("Límites a la recopilación","Límites a recopilar más datos de los necesarios","3 norma estricta de “estrictamente necesario” · 2 límites de propósito más reglas · 1 norma de “razonablemente necesario” · 0 ninguno"),
+ "rights":("Derechos individuales","Derechos a ver, corregir, borrar y trasladar sus datos","3 los cuatro · 2 falta la corrección · 1 ley limitada · 0 ninguno"),
+ "brokers":("Corredores de datos","Corredores registrados, cubiertos y con opción de baja","3 registro más eliminación en un solo paso · 2 registro · 1 cubiertos por la ley (excepción de registros públicos) · 0 nada"),
+ "sensitive":("Datos sensibles","Datos de salud, biométricos, de ubicación y de menores","3 prohibida la venta de datos sensibles · 2 consentimiento previo o ley fuerte de salud/biometría · 1 aviso y opción de baja · 0 nada"),
+ "regulator":("Autoridad","Quién hace cumplir la ley y con qué dedicación","3 agencia de privacidad dedicada · 2 fiscal general con programa público de privacidad · 1 fiscal general · 0 no hay ley de privacidad que aplicar"),
+ "enforce":("Historial de sanciones","Sanciones realmente impuestas","3 sanciones repetidas y considerables · 2 varias acciones o grandes fallos privados · 1 al menos una acción pública · 0 ninguna encontrada"),
+ "remedies":("Recursos personales","Quejas y derecho a demandar","2 derecho a demandar en algunos casos de privacidad · 1 solo quejas gratuitas ante el fiscal general · 3 derecho amplio a demandar (ninguno todavía)"),
+ "breach":("Aviso de filtraciones","Aviso cuando se filtran sus datos","3 ley con plazo de 30 días · 2 ley · 0 ninguna encontrada"),
+ "const":("Derecho constitucional","Derecho explícito a la privacidad en la constitución estatal","3 explícito y también se aplica a empresas privadas · 2 explícito, frente al gobierno · 0 ninguno explícito"),
+ "police":("Acceso policial a datos","Reglas de orden judicial para datos de ubicación y electrónicos, más allá del mínimo federal","3 orden judicial para ubicación (histórica y en tiempo real) o datos electrónicos · 2 cobertura parcial · 1 cobertura limitada · 0 solo el mínimo federal"),
+}
+NOTE_ES={
+ "Florida Digital Bill of Rights covers only very large companies.":"La Florida Digital Bill of Rights solo cubre a empresas muy grandes.",
+ "No right to correct data; weaker collection and sensitive-data rules.":"No hay derecho a corregir datos; reglas más débiles sobre recopilación y datos sensibles.",
+ "Strictest collection standard in the US; bans sale of sensitive data.":"La norma de recopilación más estricta del país; prohíbe vender datos sensibles.",
+ "Only state with a dedicated privacy agency (CalPrivacy); DROP one-step broker deletion; repeated CCPA fines in 2025; constitutional privacy right applies to companies too.":"Único estado con una agencia de privacidad dedicada (CalPrivacy); eliminación en un solo paso con DROP; multas repetidas bajo la CCPA en 2025; el derecho constitucional a la privacidad también se aplica a las empresas.",
+ "Runs a data broker registry.":"Tiene un registro de corredores de datos.",
+ "Billion-dollar biometric privacy settlements (Meta 2024, Google 2025) and a TDPSA lawsuit.":"Acuerdos multimillonarios por privacidad biométrica (Meta 2024, Google 2025) y una demanda bajo la TDPSA.",
+ "AG publishes annual privacy enforcement reports; CTDPA penalties in 2025.":"El fiscal general publica informes anuales de aplicación de la ley de privacidad; sanciones bajo la CTDPA en 2025.",
+ "DOJ publishes annual and quarterly privacy enforcement reports.":"El Departamento de Justicia publica informes anuales y trimestrales de aplicación de la ley de privacidad.",
+ "AG sued Snap under the Utah Consumer Privacy Act (2025).":"El fiscal general demandó a Snap bajo la Utah Consumer Privacy Act (2025).",
+ "AG sued Roku under the Digital Bill of Rights (2025).":"El fiscal general demandó a Roku bajo la Digital Bill of Rights (2025).",
+ "No comprehensive law, but BIPA is the strongest biometric law in the US, with a private right to sue and large judgments.":"No tiene ley integral, pero la BIPA es la ley biométrica más fuerte del país, con derecho a demandar y grandes fallos.",
+ "No comprehensive law, but the My Health My Data Act protects health data with a private right to sue.":"No tiene ley integral, pero la My Health My Data Act protege los datos de salud con derecho a demandar.",
+ "No comprehensive law; has a consumer health data law.":"No tiene ley integral; tiene una ley de datos de salud del consumidor.",
+ "No breach notification law found in the sources reviewed.":"No se encontró una ley de aviso de filtraciones en las fuentes revisadas.",
+ "State constitution protects electronic data from warrantless searches.":"La constitución estatal protege los datos electrónicos de registros sin orden judicial.",
+}
+MONTHS_ES={"January":"enero","February":"febrero","March":"marzo","April":"abril","May":"mayo","June":"junio","July":"julio","August":"agosto","September":"septiembre","October":"octubre","November":"noviembre","December":"diciembre"}
+def note_es(note):
+    import re as _re
+    parts=[x.strip() for x in _re.split(r"(?<=\.)\s+(?=[A-Z])",note) if x.strip()]
+    out=[]
+    for x in parts:
+        m=_re.match(r"Law signed in 2026, takes effect (\w+) (\d+), (\d+); other scores rise then\.",x)
+        if m: out.append(f"Ley aprobada en 2026, entra en vigor el {m.group(2)} de {MONTHS_ES[m.group(1)]} de {m.group(3)}; los demás puntajes subirán entonces."); continue
+        out.append(NOTE_ES.get(x,x))
+    return " ".join(out)
+
 # Base sets
 law3={"CA","CO","CT","DE","IN","IA","KY","MD","MN","MT","NE","NH","NJ","OR","RI","TN","TX","UT","VA"}
 pending={"AL":"May 1, 2027","LA":"January 1, 2027","OK":"January 1, 2027","VT":"January 1, 2028"}
@@ -159,7 +201,7 @@ wb.save(ROOT / "public/us-privacy-ranking.xlsx")
 # ---- scores.js for the site
 codes=[c for c,_ in J]
 out={"reviewed":REVIEWED,
-     "criteria":[{"k":k,"name":n,"what":m,"group":g,"weight":w,"guide":guide} for k,n,m,g,w,guide in CRIT],
-     "scores":{c:{"s":[rows[i][2][k] for k in K],"note":rows[i][3]} for i,c in enumerate(codes)}}
+     "criteria":[{"k":k,"name":n,"what":m,"group":g,"weight":w,"guide":guide,"name_es":CRIT_ES[k][0],"what_es":CRIT_ES[k][1],"guide_es":CRIT_ES[k][2]} for k,n,m,g,w,guide in CRIT],
+     "scores":{c:{"s":[rows[i][2][k] for k in K],"note":rows[i][3],"note_es":note_es(rows[i][3])} for i,c in enumerate(codes)}}
 (ROOT / "public/scores.js").write_text("/* Generated by tools/scores.py. Do not edit by hand. */\nwindow.OOK_SCORES = "+json.dumps(out,ensure_ascii=False,separators=(",",":"))+";\n",encoding="utf-8")
 print(len(rows),"jurisdictions scored; wrote public/scores.js and public/us-privacy-ranking.xlsx")
