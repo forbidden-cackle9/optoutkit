@@ -1,0 +1,225 @@
+{
+  "name": "Opt Out Kit broker list",
+  "source": "https://optoutkit.org",
+  "updated": "2026-10-30",
+  "recheckAfterDays": 60,
+  "notes": "Opting out is always free. Only follow opt-out links whose domain is in officialDomains. Pages that build a paid report are sales pages, not opt-outs.",
+  "brokers": [
+    {
+      "id": "beenverified",
+      "name": "BeenVerified",
+      "priority": true,
+      "optOutUrl": "https://www.beenverified.com/app/optout/search",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "beenverified.com"
+      ],
+      "tip": "Also covers PeopleLooker and PeopleSmart. One opt-out per email address; confirm by the email link."
+    },
+    {
+      "id": "checkpeople",
+      "name": "CheckPeople",
+      "priority": true,
+      "optOutUrl": "https://checkpeople.com/opt-out",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "checkpeople.com"
+      ],
+      "tip": "Request your data first under Right to Know. The opt-out asks for birthdate and full legal name."
+    },
+    {
+      "id": "intelius",
+      "name": "Intelius / PeopleConnect",
+      "priority": true,
+      "optOutUrl": "https://suppression.peopleconnect.us/login",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "suppression.peopleconnect.us"
+      ],
+      "tip": "Skip intelius.com, where searches are slow and end in a paid report. The opt-out page finds your record itself. One form covers Instant Checkmate, TruthFinder, US Search, ZabaSearch, Classmates and more."
+    },
+    {
+      "id": "mylife",
+      "name": "MyLife",
+      "priority": true,
+      "optOutUrl": "https://www.mylife.com/privacyrequest",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "mylife.com"
+      ],
+      "tip": "It may push you to make an account with ID. Emailing privacy@mylife.com with your profile link is an alternative."
+    },
+    {
+      "id": "nuwber",
+      "name": "Nuwber",
+      "priority": true,
+      "optOutUrl": "https://nuwber.com/removal/link",
+      "needsProfileLink": true,
+      "findProfileUrl": "https://nuwber.com/",
+      "officialDomains": [
+        "nuwber.com"
+      ],
+      "tip": "Filter by state to find your profile link, then paste it in the removal form. Skip the paid report."
+    },
+    {
+      "id": "smartbgc",
+      "name": "SmartBackgroundChecks",
+      "priority": true,
+      "optOutUrl": "https://www.smartbackgroundchecks.com/optout",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "smartbackgroundchecks.com"
+      ],
+      "tip": "Usually removes you from PeopleFinders too."
+    },
+    {
+      "id": "spokeo",
+      "name": "Spokeo",
+      "priority": true,
+      "optOutUrl": "https://www.spokeo.com/optout",
+      "needsProfileLink": true,
+      "findProfileUrl": "https://www.spokeo.com/search",
+      "officialDomains": [
+        "spokeo.com"
+      ],
+      "tip": "Paste your profile link and email, then confirm by the email link."
+    },
+    {
+      "id": "thatsthem",
+      "name": "That's Them",
+      "priority": true,
+      "optOutUrl": "https://thatsthem.com/optout",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "thatsthem.com"
+      ],
+      "tip": "Ignore the identity-protection upsell links."
+    },
+    {
+      "id": "whitepages",
+      "name": "Whitepages",
+      "priority": true,
+      "optOutUrl": "https://www.whitepages.com/suppression_requests",
+      "needsProfileLink": true,
+      "findProfileUrl": "https://www.whitepages.com/",
+      "officialDomains": [
+        "whitepages.com"
+      ],
+      "tip": "Copy the link to your listing first, then paste it in the removal form. Verifies by phone call with a code. Also removes you from 411.com."
+    },
+    {
+      "id": "fastpeople",
+      "name": "FastPeopleSearch",
+      "priority": true,
+      "optOutUrl": "https://www.fastpeoplesearch.com/optout",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "fastpeoplesearch.com"
+      ],
+      "tip": "Expect a captcha. Ignore offers for full reports."
+    },
+    {
+      "id": "familytree",
+      "name": "FamilyTreeNow",
+      "priority": true,
+      "optOutUrl": "https://www.familytreenow.com/optout",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "familytreenow.com"
+      ],
+      "tip": null
+    },
+    {
+      "id": "usphonebook",
+      "name": "USPhoneBook",
+      "priority": true,
+      "optOutUrl": "https://www.usphonebook.com/opt-out/",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "usphonebook.com"
+      ],
+      "tip": "Search by your phone number. If the form hangs, email support+optout@usphonebook.com."
+    },
+    {
+      "id": "truepeople",
+      "name": "TruePeopleSearch",
+      "priority": false,
+      "optOutUrl": "https://www.truepeoplesearch.com/removal",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "truepeoplesearch.com"
+      ],
+      "tip": "Several captchas."
+    },
+    {
+      "id": "cyberbgc",
+      "name": "Cyber Background Checks",
+      "priority": false,
+      "optOutUrl": "https://www.cyberbackgroundchecks.com/removal",
+      "needsProfileLink": true,
+      "findProfileUrl": "https://www.cyberbackgroundchecks.com/",
+      "officialDomains": [
+        "cyberbackgroundchecks.com"
+      ],
+      "tip": "Copy the link to your listing first, then paste it in the removal form."
+    },
+    {
+      "id": "searchpeoplefree",
+      "name": "SearchPeopleFree",
+      "priority": false,
+      "optOutUrl": "https://www.searchpeoplefree.com/opt-out",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "searchpeoplefree.com"
+      ],
+      "tip": "Search by name, phone, address and email separately."
+    },
+    {
+      "id": "peoplesearchnow",
+      "name": "PeopleSearchNow",
+      "priority": false,
+      "optOutUrl": "https://www.peoplesearchnow.com/opt-out",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "peoplesearchnow.com"
+      ],
+      "tip": null
+    },
+    {
+      "id": "usapeople",
+      "name": "USA People Search",
+      "priority": false,
+      "optOutUrl": "https://www.usa-people-search.com/removal",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "usa-people-search.com"
+      ],
+      "tip": null
+    },
+    {
+      "id": "acxiom",
+      "name": "Acxiom",
+      "priority": false,
+      "optOutUrl": "https://www.acxiom.com/optout/",
+      "needsProfileLink": false,
+      "findProfileUrl": null,
+      "officialDomains": [
+        "acxiom.com"
+      ],
+      "tip": "A marketing data broker with no public search. Opt out anyway."
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Opt Out Kit welcomes search engines and AI crawlers.
+User-agent: *
+Allow: /
+
+Sitemap: https://optoutkit.org/sitemap.xml

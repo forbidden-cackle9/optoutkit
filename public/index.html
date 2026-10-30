@@ -9,6 +9,10 @@
 <title>Opt Out Kit</title>
 <meta name="referrer" content="no-referrer">
 <link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://optoutkit.org/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Opt Out Kit","url":"https://optoutkit.org/","applicationCategory":"SecurityApplication","operatingSystem":"Any (web browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free checklist for removing yourself from people-search sites, with a private leaked-password check and removal-request drafts. No account, no cookies, no tracking.","codeRepository":"https://github.com/forbidden-cackle9/optoutkit"}
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -36,7 +40,18 @@
     <button type="button" class="ghost" id="reset">Reset checklist</button>
     <span id="resetask" hidden>Clear every status and date? <button type="button" class="primary" id="resetyes">Yes, clear</button> <button type="button" class="ghost" id="resetno">Cancel</button></span>
   </div>
-  <p class="small muted" id="storenote">Your progress is saved in this browser only. Clearing site data or using a private window removes it.</p>
+  <div class="keep">
+    <h3>Keep track</h3>
+    <p class="small muted">These run in your browser. Nothing is sent anywhere unless you paste or share it yourself.</p>
+    <div class="row">
+      <button type="button" class="ghost" id="k-ai">Copy summary for my AI assistant</button>
+      <button type="button" class="ghost" id="k-cal">Add re-check reminders to my calendar</button>
+      <button type="button" class="ghost" id="k-exp">Export progress</button>
+      <label class="btn ghost" for="k-imp">Import progress</label><input type="file" id="k-imp" accept=".json,application/json" class="vh">
+    </div>
+    <p class="small" id="k-status" aria-live="polite"></p>
+  </div>
+  <p class="small muted" id="storenote">Your progress is saved in this browser only. Clearing site data or using a private window removes it. Use Export progress to keep a copy or move it to another device.</p>
 </section>
 
 <div class="group-head"><h2 class="group">Tools</h2><p class="muted">Quick checks to run any time you set a new password or hear about a breach.</p></div>
@@ -278,6 +293,75 @@ document.getElementById("pwform").addEventListener("submit",function(ev){
 document.getElementById("pwclear").addEventListener("click",function(){pw.value="";seq++;showPrefix("");out.hidden=true;pw.focus();});
 var showBtn=document.getElementById("pwshow");
 showBtn.addEventListener("click",function(){var on=pw.type==="password";pw.type=on?"text":"password";showBtn.textContent=on?"Hide":"Show";showBtn.setAttribute("aria-pressed",String(on));});
+
+
+/* ---------- Keep track: AI summary, calendar, export/import (all local) ---------- */
+var kst=document.getElementById("k-status");
+function addDays(s,n){var t=new Date(s+"T00:00:00");t.setDate(t.getDate()+n);return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");}
+function label(v){for(var i=0;i<STATUS.length;i++)if(STATUS[i][0]===v)return STATUS[i][1];return "Not checked";}
+function copyText(t,msg){
+  function fb(){var a=el("textarea");a.value=t;a.setAttribute("readonly","");a.className="vh";document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand("copy");}catch(e){}document.body.removeChild(a);kst.textContent=ok?msg:"Your browser blocked copying. Try again, or use Export progress.";}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){kst.textContent=msg;},fb);else fb();
+}
+function save_file(name,type,text){
+  var url=URL.createObjectURL(new Blob([text],{type:type})),a=el("a",{href:url,download:name});
+  document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(url);},1000);
+}
+document.getElementById("k-ai").addEventListener("click",function(){
+  var lines=[],unchecked=[],any=false;
+  BROKERS.forEach(function(b){
+    var r=state[b.id]||{},s=r.s||"";
+    if(!s){unchecked.push(b.name);return;}
+    any=true;var x="- "+b.name+": "+label(s);
+    if((s==="sent"||s==="removed")&&r.d)x+=(s==="sent"?" on ":" (opt-out sent ")+nice(r.d)+(s==="sent"?"; re-check due ":"; re-check due ")+nice(addDays(r.d,60))+(s==="sent"?"":")");
+    else if(s==="listed")x+=" (still needs an opt-out: "+b.opt+")";
+    lines.push(x);
+  });
+  if(!any){kst.textContent="Mark at least one site first.";return;}
+  var t="My Opt Out Kit progress (https://optoutkit.org), as of "+nice(today())+":\n"+lines.join("\n")+
+    (unchecked.length?"\nNot checked yet: "+unchecked.join(", "):"")+
+    "\n\nPlease remind me on each re-check date to search that site again for my listing, because these sites relist people. "+
+    "Opt-out links and each site's official domains are at https://optoutkit.org/brokers.json. Opting out is always free, so warn me if a page asks for payment. Please don't fill out forms for me.";
+  copyText(t,"Copied. Paste it into your AI assistant and ask it to set the reminders.");
+});
+function ics(s){return String(s).replace(/\\/g,"\\\\").replace(/;/g,"\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");}
+function fold(l){var out="";while(l.length>73){out+=l.slice(0,73)+"\r\n ";l=l.slice(73);}return out+l;}
+document.getElementById("k-cal").addEventListener("click",function(){
+  var ev=[],now=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,""),tm=addDays(today(),1);
+  BROKERS.forEach(function(b){
+    var r=state[b.id]||{};
+    if(!((r.s==="sent"||r.s==="removed")&&r.d))return;
+    var due=addDays(r.d,60);if(due<tm)due=tm;
+    var d=due.replace(/-/g,""),e=addDays(due,1).replace(/-/g,"");
+    ev.push(["BEGIN:VEVENT","UID:"+b.id+"-"+r.d+"@optoutkit.org","DTSTAMP:"+now,"DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+e,
+      "SUMMARY:"+ics("Re-check "+b.name+" for your listing"),
+      "DESCRIPTION:"+ics("You sent an opt-out on "+nice(r.d)+". Search again in case you've been relisted. Opt-out page: "+b.opt+" (free; never pay for a report). Checklist: https://optoutkit.org/"),
+      "URL:"+b.opt,"END:VEVENT"].map(fold).join("\r\n"));
+  });
+  if(!ev.length){kst.textContent="No reminders yet. Mark a site as Opt-out sent or Removed first.";return;}
+  save_file("optoutkit-rechecks.ics","text/calendar",["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Opt Out Kit//EN","CALSCALE:GREGORIAN"].join("\r\n")+"\r\n"+ev.join("\r\n")+"\r\nEND:VCALENDAR\r\n");
+  kst.textContent="Saved "+ev.length+(ev.length===1?" reminder":" reminders")+". Open the file to add "+(ev.length===1?"it":"them")+" to your calendar.";
+});
+document.getElementById("k-exp").addEventListener("click",function(){
+  save_file("optoutkit-progress-"+today()+".json","application/json",JSON.stringify({app:"optoutkit",version:1,exported:today(),state:state},null,2));
+  kst.textContent="Progress saved as a file. Import it on another device to continue there.";
+});
+document.getElementById("k-imp").addEventListener("change",function(){
+  var f=this.files&&this.files[0],inp=this;if(!f)return;
+  var rd=new FileReader();
+  rd.onload=function(){
+    try{
+      var d=JSON.parse(rd.result);if(!d||d.app!=="optoutkit"||typeof d.state!=="object")throw 0;
+      var ok={},n=0,valid={};STATUS.forEach(function(x){valid[x[0]]=1;});
+      BROKERS.forEach(function(b){var r=d.state[b.id];if(!r||typeof r!=="object")return;var c={};
+        if(typeof r.s==="string"&&valid[r.s])c.s=r.s;["d","t"].forEach(function(k){if(typeof r[k]==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(r[k]))c[k]=r[k];});
+        if(c.s||c.d){ok[b.id]=c;n++;}});
+      state=ok;save();render();kst.textContent="Imported progress for "+n+(n===1?" site.":" sites.");
+    }catch(e){kst.textContent="That file isn't an Opt Out Kit progress file.";}
+    inp.value="";
+  };
+  rd.readAsText(f);
+});
 
 /* ---------- Removal request drafts (nothing stored or sent) ---------- */
 var DR={mylife:{co:"MyLife",addr:"privacy@mylife.com"},usphonebook:{co:"USPhoneBook",addr:"support+optout@usphonebook.com"}};
