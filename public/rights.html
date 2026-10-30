@@ -21,9 +21,29 @@
 
 <section aria-labelledby="st-h">
   <div><span class="label">Your state</span><h2 id="st-h">What are my rights?</h2></div>
+  <p>Tap your state on the map, or choose it from the list. Colors show how strongly each place protects residents from companies, scored against Europe's privacy law.</p>
+  <div id="map" class="map"></div>
+  <div class="legend" aria-hidden="true"><span>Weaker</span><span class="ramp"></span><span>Stronger</span></div>
   <label class="fld"><span class="label">Choose your state</span>
     <select id="st-pick"><option value="">Select a state</option></select></label>
   <div id="st-out" aria-live="polite" hidden></div>
+</section>
+
+<section aria-labelledby="cmp-h">
+  <div><span class="label">Compare</span><h2 id="cmp-h">How states compare</h2></div>
+  <p class="small muted">Consumer score: protection from companies, out of 30. Government score: constitutional privacy rights and limits on police access to data, out of 6. Tap a column to sort.</p>
+  <div class="tablewrap"><table class="rank" id="rank">
+    <thead><tr><th><button type="button" data-k="rank">Rank</button></th><th><button type="button" data-k="name">Place</button></th><th><button type="button" data-k="cons">Consumer</button></th><th><button type="button" data-k="gov">Gov't</button></th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <details class="method" id="method">
+    <summary>How we scored this</summary>
+    <p>We used the EU's General Data Protection Regulation as the benchmark: it's the most widely copied privacy law in the world. Each place gets 0 to 3 points on eleven criteria. Enforcement counts double, because a strong law nobody enforces protects no one. Government protections are scored separately so they don't hide how well a place protects you from companies.</p>
+    <ul class="also" id="crit-list"></ul>
+    <p><strong>Where the facts come from:</strong> state law trackers from ClauseAudit, Morgan Lewis and MultiState for which laws exist and when they take effect; the Future of Privacy Forum's 2025 enforcement review and MultiState for enforcement actions; the ACLU and EPIC for police access to location data; and DLA Piper for breach notification laws.</p>
+    <p><strong>Limits:</strong> many scores are judgment calls, explained in each place's notes. Places with a broad law and no notable differences get the standard score for that kind of law. Police-access scores rely mainly on a 2015 survey and may miss newer laws. Enforcement reflects public actions through 2025, so states with new laws may simply not have acted yet. Scores reflect laws in effect on <span class="rev"></span>.</p>
+    <p><a href="/us-privacy-ranking.xlsx" download>Download the full spreadsheet</a> with every score and note. Spotted a mistake? <a href="https://github.com/forbidden-cackle9/optoutkit/issues" target="_blank" rel="noopener noreferrer">Tell us on GitHub</a>.</p>
+  </details>
 </section>
 
 <section aria-labelledby="lt-h">
@@ -86,6 +106,7 @@
 </footer>
 </div>
 <script src="/states.js"></script>
+<script src="/scores.js"></script>
 <script src="/rights.js"></script>
 </body>
 </html>

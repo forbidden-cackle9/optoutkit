@@ -50,9 +50,90 @@ function showState(){
     var ul2=el("ul",{"class":"also"});box.appendChild(ul2);
     var a=el("li");a.appendChild(el("strong",{},"Consumer complaints: "));a.appendChild(document.createTextNode("your "));a.appendChild(ext("https://www.naag.org/find-my-ag/","state attorney general"));a.appendChild(document.createTextNode(" handles consumer protection complaints."));ul2.appendChild(a);
   }
+  breakdown(box,st.c);
   if($("lt-state").value!==st.c){$("lt-state").value=st.c;letter();}
 }
 $("st-pick").addEventListener("change",showState);
+
+/* ---------- Scores, heat map and ranking ---------- */
+var SC=window.OOK_SCORES||{criteria:[],scores:{}},CR=SC.criteria;
+var MAXC=0,MAXG=0;CR.forEach(function(c){if(c.group==="Consumer")MAXC+=3*c.weight;else MAXG+=3*c.weight;});
+function totals(code){var r=SC.scores[code];if(!r)return null;var c=0,g=0;
+  CR.forEach(function(k,i){if(k.group==="Consumer")c+=r.s[i]*k.weight;else g+=r.s[i]*k.weight;});return {c:c,g:g,pct:MAXC?c/MAXC:0};}
+var ORDER=S.map(function(x){return x.c;}).filter(function(c){return SC.scores[c];});
+var RANK={};(function(){var t=ORDER.map(function(c){return [c,totals(c).c];}).sort(function(a,b){return b[1]-a[1];});
+  t.forEach(function(x,i){RANK[x[0]]=(i>0&&x[1]===t[i-1][1])?RANK[t[i-1][0]]:i+1;});})();
+function mix(a,b,t){var x=parseInt(a,16),y=parseInt(b,16);function ch(s){return [(s>>16)&255,(s>>8)&255,s&255];}
+  var p=ch(x),q=ch(y);return "#"+p.map(function(v,i){return Math.round(v+(q[i]-v)*t).toString(16).padStart(2,"0");}).join("");}
+function heat(f){f=Math.max(0,Math.min(1,f));return f<.5?mix("F4F1E8","E9C46A",f/.5):mix("E9C46A","2E9E5B",(f-.5)/.5);}
+function heatPct(p){return heat(p/0.85);}
+function inkOn(f){return f>0.7?"#ffffff":"#1d2a1f";}
+var GRID={AK:[0,0],ME:[10,0],VT:[9,1],NH:[10,1],WA:[0,2],ID:[1,2],MT:[2,2],ND:[3,2],MN:[4,2],IL:[5,2],WI:[6,2],MI:[7,2],NY:[8,2],RI:[9,2],MA:[10,2],
+ OR:[0,3],NV:[1,3],WY:[2,3],SD:[3,3],IA:[4,3],IN:[5,3],OH:[6,3],PA:[7,3],NJ:[8,3],CT:[9,3],
+ CA:[0,4],UT:[1,4],CO:[2,4],NE:[3,4],MO:[4,4],KY:[5,4],WV:[6,4],VA:[7,4],MD:[8,4],DE:[9,4],
+ AZ:[1,5],NM:[2,5],KS:[3,5],AR:[4,5],TN:[5,5],NC:[6,5],SC:[7,5],DC:[8,5],
+ OK:[3,6],LA:[4,6],MS:[5,6],AL:[6,6],GA:[7,6],HI:[0,7],TX:[3,7],FL:[8,7],
+ GU:[0,9],MP:[1,9],AS:[2,9],PR:[8,9],VI:[9,9]};
+var NS="http://www.w3.org/2000/svg";
+function sv(tag,attrs,text){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
+(function(){
+  var T=40,svg=sv("svg",{viewBox:"0 0 440 400",role:"group","aria-label":"Map of states and territories colored by privacy protection"});
+  svg.appendChild(sv("text",{x:0,y:8*T+26,"class":"cap"},"Territories"));
+  ORDER.forEach(function(c){var g=GRID[c];if(!g)return;var t=totals(c),st=find(c),f=t.pct/0.85,fill=heat(f);
+    var a=sv("g",{"class":"tile",tabindex:"0",role:"button","data-c":c,"aria-label":st.n+": consumer score "+t.c+" of "+MAXC+", rank "+RANK[c]});
+    a.appendChild(sv("title",{},st.n+" — "+t.c+"/"+MAXC));
+    a.appendChild(sv("rect",{x:g[0]*T+1,y:g[1]*T+1+(g[1]>=9?-8:0),width:T-2,height:T-2,rx:5,fill:fill}));
+    a.appendChild(sv("text",{x:g[0]*T+T/2,y:g[1]*T+T/2+5+(g[1]>=9?-8:0),"text-anchor":"middle",fill:inkOn(f)},c));
+    function go(){pick(c,true);}
+    a.addEventListener("click",go);a.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
+    svg.appendChild(a);});
+  $("map").appendChild(svg);
+})();
+function pick(c,scroll){$("st-pick").value=c;showState();if(scroll){var o=$("st-out");if(o.scrollIntoView)o.scrollIntoView({block:"nearest",behavior:"smooth"});}}
+function breakdown(box,code){
+  var t=totals(code),r=SC.scores[code];if(!t)return;
+  var line=el("div",{"class":"scoreline"});
+  var big=el("span",{"class":"big"},t.c+"/"+MAXC);line.appendChild(big);
+  line.appendChild(el("span",{},"consumer score · rank "+RANK[code]+" of "+ORDER.length));
+  line.appendChild(el("span",{"class":"muted"},"Government "+t.g+"/"+MAXG));
+  box.appendChild(line);
+  var bars=el("div",{"class":"bars"}),last="";
+  CR.forEach(function(k,i){
+    if(k.group!==last){bars.appendChild(el("div",{"class":"grp"},k.group==="Consumer"?"Protection from companies":"Protection from government"));last=k.group;}
+    bars.appendChild(el("span",{},k.name+(k.weight>1?" (×"+k.weight+")":"")));
+    var b=el("div",{"class":"bar","aria-hidden":"true"}),f=el("span");f.style.width=(r.s[i]/3*100)+"%";f.style.background=heat(r.s[i]/3);b.appendChild(f);bars.appendChild(b);
+    bars.appendChild(el("span",{"aria-label":r.s[i]+" of 3"},String(r.s[i])));
+  });
+  box.appendChild(bars);
+  if(r.note)p(box,r.note).className="small muted";
+  var m=el("p",{"class":"small"});var a=el("a",{href:"#method"},"How we scored this");a.addEventListener("click",function(){$("method").open=true;});m.appendChild(a);box.appendChild(m);
+  Array.prototype.forEach.call(document.querySelectorAll(".map .tile"),function(n){n.classList.toggle("on",n.getAttribute("data-c")===code);});
+}
+/* Ranking table */
+var sortK="rank",sortDir=1;
+function drawTable(){
+  var tb=document.querySelector("#rank tbody");tb.textContent="";
+  var list=ORDER.slice().sort(function(a,b){var x,y;
+    if(sortK==="name"){x=find(a).n;y=find(b).n;return x<y?-sortDir:x>y?sortDir:0;}
+    if(sortK==="gov"){x=totals(a).g;y=totals(b).g;}else if(sortK==="cons"){x=totals(a).c;y=totals(b).c;}else{x=RANK[a];y=RANK[b];}
+    return (x-y)*sortDir||(RANK[a]-RANK[b]);});
+  list.forEach(function(c){var t=totals(c),tr=el("tr",{tabindex:"0"});
+    tr.appendChild(el("td",{},String(RANK[c])));tr.appendChild(el("td",{"class":"n"},find(c).n));
+    var td=el("td"),ch=el("span",{"class":"chip-s"},t.c+"/"+MAXC);var f=t.pct/0.85;ch.style.background=heat(f);ch.style.color=inkOn(f);td.appendChild(ch);tr.appendChild(td);
+    tr.appendChild(el("td",{},t.g+"/"+MAXG));
+    function go(){pick(c,false);var s=document.querySelector('section[aria-labelledby="st-h"]');if(s.scrollIntoView)s.scrollIntoView({behavior:"smooth"});}
+    tr.addEventListener("click",go);tr.addEventListener("keydown",function(e){if(e.key==="Enter"){go();}});
+    tb.appendChild(tr);});
+  Array.prototype.forEach.call(document.querySelectorAll("#rank th"),function(th){var k=th.firstChild.getAttribute("data-k");
+    if(k===sortK)th.setAttribute("aria-sort",sortDir>0?"ascending":"descending");else th.removeAttribute("aria-sort");});
+}
+Array.prototype.forEach.call(document.querySelectorAll("#rank th button"),function(b){b.addEventListener("click",function(){
+  var k=b.getAttribute("data-k");if(k===sortK)sortDir=-sortDir;else{sortK=k;sortDir=(k==="cons"||k==="gov")?-1:1;}drawTable();});});
+drawTable();
+(function(){var ul=$("crit-list");CR.forEach(function(k){var li=el("li");li.appendChild(el("strong",{},k.name+(k.weight>1?" (counts double)":"")+": "));
+  li.appendChild(document.createTextNode(k.what+". "+k.guide+"."));ul.appendChild(li);});
+  Array.prototype.forEach.call(document.querySelectorAll(".rev"),function(n){n.textContent=nice(SC.reviewed||window.OOK_REVIEWED);});})();
+
 
 /* ---------- Letter to representatives ---------- */
 function v(id){return $(id).value.trim();}

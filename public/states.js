@@ -1,6 +1,6 @@
 /* State consumer privacy laws. Reviewed 2026-10-30. Update each legislative session.
    eff: date the law took or takes effect (YYYY-MM-DD). limited: narrow law covering few companies.
-   reg: state runs a data broker registry. */
+   reg: state runs a data broker registry. t: U.S. territory. */
 window.OOK_STATES = [
  {c:"AL",n:"Alabama",law:"Alabama Personal Data Protection Act",eff:"2027-05-01"},
  {c:"AK",n:"Alaska"},
@@ -55,6 +55,11 @@ window.OOK_STATES = [
  {c:"WA",n:"Washington"},
  {c:"WV",n:"West Virginia"},
  {c:"WI",n:"Wisconsin"},
- {c:"WY",n:"Wyoming"}
+ {c:"WY",n:"Wyoming"},
+ {c:"PR",n:"Puerto Rico",t:1},
+ {c:"GU",n:"Guam",t:1},
+ {c:"VI",n:"U.S. Virgin Islands",t:1},
+ {c:"AS",n:"American Samoa",t:1},
+ {c:"MP",n:"Northern Mariana Islands",t:1}
 ];
 window.OOK_REVIEWED = "2026-10-30";

@@ -99,3 +99,30 @@ textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .stcard{display:flex;flex-direction:column;gap:10px;border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:14px 16px;background:var(--paper)}
 .toplinks{flex-wrap:wrap}
+.map svg{width:100%;height:auto;display:block}
+.map .tile{cursor:pointer}
+.map .tile rect{stroke:var(--sheet);stroke-width:2}
+.map .tile:focus{outline:none}
+.map .tile:focus-visible rect,.map .tile.on rect{stroke:var(--ink);stroke-width:3}
+.map text{font:600 13px var(--body);pointer-events:none}
+.map .cap{font:600 11px var(--body);fill:var(--muted)}
+.legend{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted)}
+.legend .ramp{flex:0 1 160px;height:10px;border-radius:999px;background:linear-gradient(90deg,#F4F1E8,#E9C46A,#2E9E5B);border:1px solid var(--rule)}
+.bars{display:grid;grid-template-columns:minmax(0,1fr) 88px 22px;gap:4px 8px;align-items:center;font-size:.85rem}
+.bar{height:8px;border-radius:999px;background:var(--rule);overflow:hidden}
+.bar span{display:block;height:100%}
+.bars .grp{grid-column:1/-1;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:6px}
+.scoreline{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.scoreline .big{font-family:var(--display);font-size:1.6rem;font-weight:700}
+.tablewrap{overflow-x:auto}
+table.rank{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
+table.rank th{text-align:left;border-bottom:2px solid var(--rule);padding:0}
+table.rank th button{all:unset;cursor:pointer;display:block;padding:8px 6px;font-weight:700;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+table.rank th button:focus-visible{outline:3px solid var(--accent)}
+table.rank th[aria-sort] button{color:var(--ink)}
+table.rank td{padding:7px 6px;border-bottom:1px solid var(--rule)}
+table.rank td.n{white-space:nowrap}
+table.rank tr{cursor:pointer}
+.chip-s{display:inline-block;min-width:2.6em;text-align:center;border-radius:4px;padding:1px 6px;font-weight:700;color:#1d2a1f}
+.method summary{cursor:pointer;font-weight:600;padding:8px 0}
+.method p,.method ul{margin-top:10px}
