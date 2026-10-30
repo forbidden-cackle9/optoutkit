@@ -7,7 +7,7 @@ Source for [optoutkit.org](https://optoutkit.org): a free page for checking leak
 - Checklist progress is saved only in the visitor's browser.
 
 ## Layout
-- `public/` — everything that is served: `index.html`, `favicon.svg`, `_headers`
+- `public/` — everything that is served: `index.html`, `faq.html`, `styles.css` (shared by both pages), `favicon.svg`, `_headers`
 - `wrangler.jsonc` — tells Cloudflare to serve `public/` as a static site
 
 ## Editing the page script

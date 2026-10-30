@@ -8,84 +8,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Opt Out Kit</title>
 <meta name="referrer" content="no-referrer">
-<style>
-/* Layout: one narrow column like a case file; redaction bar is the single bold motif. */
-:root{
-  --paper:#f3f5f6; --sheet:#ffffff; --ink:#18232b; --muted:#56646e; --rule:#d5dce0;
-  --accent:#0f6b6e; --accent-ink:#ffffff; --bar:#111a20;
-  --ok:#2f7a3d; --warn:#9a5b00; --bad:#a3302a;
-  --ok-bg:#e5f2e7; --warn-bg:#fbf0dc; --bad-bg:#f8e3e1;
-  --display: "Charter","Bitstream Charter","Iowan Old Style","Georgia",serif;
-  --body: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  --mono: ui-monospace,"SF Mono","Cascadia Mono","Consolas","Menlo",monospace;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0f1519; --sheet:#172026; --ink:#e4eaee; --muted:#9aa8b1; --rule:#2b3840;
-  --accent:#4fb3b3; --accent-ink:#071415; --bar:#e4eaee;
-  --ok:#7fca8b; --warn:#e0a94a; --bad:#ec8a82;
-  --ok-bg:#16301c; --warn-bg:#33270f; --bad-bg:#3a1a18; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0f1519; --sheet:#172026; --ink:#e4eaee; --muted:#9aa8b1; --rule:#2b3840;
-  --accent:#4fb3b3; --accent-ink:#071415; --bar:#e4eaee;
-  --ok:#7fca8b; --warn:#e0a94a; --bad:#ec8a82;
-  --ok-bg:#16301c; --warn-bg:#33270f; --bad-bg:#3a1a18; color-scheme:dark}
-
-body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--body);
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
-.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
-h1,h2{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.15}
-h1{font-size:clamp(2rem,6vw,2.8rem)}
-h2{font-size:1.5rem}
-h3{margin:0;font-size:1.05rem}
-p{margin:0}
-a{color:var(--accent)}
-.muted{color:var(--muted)}
-.small{font-size:.875rem}
-.label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.redact{background:var(--bar);color:transparent;border-radius:2px;padding:0 .15em;user-select:none}
-header{display:flex;flex-direction:column;gap:12px}
-.lede{font-size:1.1rem;max-width:60ch}
-.promise{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:4px 12px;font-size:.85rem}
-section{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-input[type=password],input[type=text],input[type=date],select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:9px 11px;min-width:0}
-#pw{flex:1 1 240px;font-family:var(--mono)}
-button,.btn{font:inherit;font-weight:600;border-radius:6px;padding:9px 16px;cursor:pointer;border:1px solid var(--accent);text-decoration:none;display:inline-block}
-.primary{background:var(--accent);color:var(--accent-ink)}
-.ghost{background:transparent;color:var(--accent)}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.hash{font-family:var(--mono);font-size:.95rem;overflow-wrap:anywhere;background:var(--paper);border:1px dashed var(--rule);border-radius:6px;padding:10px 12px}
-.hash .sent{background:var(--accent);color:var(--accent-ink);padding:0 2px;border-radius:2px}
-.hash .kept{color:var(--muted)}
-.result{border-radius:6px;padding:12px 14px;font-weight:600}
-.result.ok{background:var(--ok-bg);color:var(--ok)}
-.result.bad{background:var(--bad-bg);color:var(--bad)}
-.result.warn{background:var(--warn-bg);color:var(--warn)}
-.result p{font-weight:400;color:var(--ink);margin-top:4px}
-.progress{display:flex;flex-direction:column;gap:6px}
-.track{height:10px;background:var(--paper);border:1px solid var(--rule);border-radius:999px;overflow:hidden}
-.fill{height:100%;background:var(--accent);width:0;transition:width .3s}
-.counts{display:flex;flex-wrap:wrap;gap:14px;font-variant-numeric:tabular-nums}
-.brokers{display:flex;flex-direction:column;gap:0;list-style:none;margin:0;padding:0}
-.broker{display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:14px 0;border-top:1px solid var(--rule)}
-.broker:first-child{border-top:0}
-.broker .info{min-width:0;display:flex;flex-direction:column;gap:4px}
-.broker .links{display:flex;gap:14px;font-size:.92rem}
-.broker .ctl{display:flex;flex-direction:column;gap:6px;align-items:stretch;min-width:170px}
-.tag{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--bad);margin-left:6px}
-.flag{font-size:.8rem;font-weight:600;color:var(--warn)}
-.st-listed .name{color:var(--bad)}
-.st-removed .name,.st-not-listed .name{color:var(--ok)}
-@media (max-width:560px){.broker{grid-template-columns:1fr}.broker .ctl{min-width:0;flex-direction:row;flex-wrap:wrap}.broker .ctl>*{flex:1 1 140px}}
-.also{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
-.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.note{background:var(--warn-bg);border-radius:6px;padding:10px 14px}
-.group-head{display:flex;flex-direction:column;gap:4px;margin-bottom:-14px}
-.group{font-size:1.75rem}
-footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
-@media (prefers-reduced-motion:reduce){.fill{transition:none}}
-</style>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <div class="wrap">
@@ -96,6 +19,7 @@ footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;ga
   <div class="promise">
     <span class="chip">No cookies</span><span class="chip">No analytics</span><span class="chip">No ad trackers</span><span class="chip">Your checklist stays on this device</span>
   </div>
+  <div class="toplinks"><a href="/faq">Questions? Read the FAQ</a></div>
 </header>
 
 <section aria-labelledby="br-h">
@@ -103,7 +27,8 @@ footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;ga
   <p>Work down the list. Each opt-out link takes you straight to the site's removal page, which finds your record for you. A few sites need the link to your profile first, so those also have a <strong>Find your profile</strong> link. Sites marked <span class="tag" style="margin:0">Priority</span> are the most widely used. Sites often relist people, so re-check anything you opted out of more than 60 days ago.</p>
   <p class="note"><strong>Opting out is always free.</strong> If a site makes you wait while it "builds a report," asks for payment, or offers a background check, you're on a sales page. Close it and use the opt-out link here instead.</p>
   <div class="progress">
-    <div class="track" role="progressbar" aria-labelledby="br-h" aria-valuemin="0" aria-valuemax="100" id="track"><div class="fill" id="fill"></div></div>
+    <div class="pct-row"><span class="pct" id="pct">0%</span><span class="muted" id="pctnote"></span></div>
+    <div class="track" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="100" id="track"><span class="seg seg-removed" id="seg-removed"></span><span class="seg seg-sent" id="seg-sent"></span><span class="seg seg-not" id="seg-not"></span><span class="seg seg-listed" id="seg-listed"></span></div>
     <div class="counts small" id="counts"></div>
   </div>
   <ul class="brokers" id="brokers"></ul>
@@ -157,6 +82,7 @@ footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;ga
 </section>
 
 <footer>
+  <p><a href="/faq">FAQ</a> · <a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a></p>
   <p>Opt-out links come from the volunteer-maintained <a href="https://github.com/yaelwrites/Big-Ass-Data-Broker-Opt-Out-List" target="_blank" rel="noopener noreferrer">Big Ass Data Broker Opt-Out List</a>. Breach data comes from <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a>.</p>
   <p>Broker sites change their forms often. If a link is broken, the site may have moved its opt-out page; search the site for "opt out" or "remove".</p>
 </footer>
@@ -188,11 +114,13 @@ var BROKERS=[
 ];
 var STATUS=[["","Not checked"],["not-listed","Not listed"],["listed","Listed"],["sent","Opt-out sent"],["removed","Removed"]];
 var state={};
+function sel_label(v){for(var i=0;i<STATUS.length;i++)if(STATUS[i][0]===v)return "\u201c"+STATUS[i][1]+"\u201d";return "";}
 var storageOK=true;
 try{var raw=localStorage.getItem(KEY);if(raw)state=JSON.parse(raw)||{};}catch(e){storageOK=false;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){storageOK=false;}
   if(!storageOK)document.getElementById("storenote").textContent="This browser isn't allowing the page to save, so your progress will be lost when you close it.";}
 function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function nice(s){var t=new Date(s+"T00:00:00");return isNaN(t)?s:t.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});}
 function daysSince(s){if(!s)return 0;var t=Date.parse(s+"T00:00:00");return isNaN(t)?0:Math.floor((Date.now()-t)/864e5);}
 
 var list=document.getElementById("brokers");
@@ -210,6 +138,7 @@ BROKERS.forEach(function(b){
   if(b.search)links.appendChild(link(b.search,"Find your profile"));
   links.appendChild(link(b.opt,"Opt out"));
   info.appendChild(links);
+  var when=el("span",{"class":"when",id:"w-"+b.id});when.hidden=true;info.appendChild(when);
   var flag=el("span",{"class":"flag",id:"f-"+b.id});flag.hidden=true;info.appendChild(flag);
   var ctl=el("div",{"class":"ctl"});
   var sel=el("select",{id:"s-"+b.id,"aria-label":"Status for "+b.name});
@@ -218,7 +147,7 @@ BROKERS.forEach(function(b){
   ctl.appendChild(sel);ctl.appendChild(date);
   li.appendChild(info);li.appendChild(ctl);list.appendChild(li);
   sel.addEventListener("change",function(){
-    var r=state[b.id]||{};r.s=sel.value;
+    var r=state[b.id]||{};r.s=sel.value;r.t=today();
     if(sel.value==="sent" && !r.d){r.d=today();}
     state[b.id]=r;save();render();});
   date.addEventListener("change",function(){var r=state[b.id]||{};r.d=date.value;state[b.id]=r;save();render();});
@@ -233,6 +162,8 @@ function render(){
     document.getElementById("s-"+b.id).value=s;
     var d=document.getElementById("d-"+b.id);d.value=r.d||"";
     d.hidden=!(s==="sent"||s==="removed");
+    var w=document.getElementById("w-"+b.id);
+    if(s && r.t){w.hidden=false;w.textContent="Marked "+sel_label(s)+" on "+nice(r.t);}else w.hidden=true;
     var f=document.getElementById("f-"+b.id);
     var age=daysSince(r.d);
     if((s==="sent"||s==="removed") && age>60){f.hidden=false;f.textContent="Opt-out was "+age+" days ago. Search again to make sure you haven't been relisted.";recheck++;}
@@ -241,12 +172,16 @@ function render(){
     if(s && s!=="listed")done++;
     if(s==="listed")listed++;if(s==="sent")sent++;if(s==="removed")removed++;
   });
-  var pct=Math.round(done/BROKERS.length*100);
-  document.getElementById("fill").style.width=pct+"%";
-  var tr=document.getElementById("track");tr.setAttribute("aria-valuenow",pct);
-  var c=document.getElementById("counts");
-  c.textContent="";
-  [[done+" of "+BROKERS.length+" handled",""],[listed+" listed, needing opt-out",""],[sent+(sent===1?" opt-out":" opt-outs")+" pending",""],[removed+" removed",""],[recheck+" due for re-check",""]].forEach(function(x){c.appendChild(el("span",{},x[0]));});
+  var notl=0;BROKERS.forEach(function(b){if((state[b.id]||{}).s==="not-listed")notl++;});
+  var N=BROKERS.length,pct=Math.round(done/N*100);
+  document.getElementById("pct").textContent=pct+"%";
+  document.getElementById("pctnote").textContent="done \u00b7 "+done+" of "+N+" sites handled"+(pct===100?". Nice work.":"");
+  [["removed",removed],["sent",sent],["not",notl],["listed",listed]].forEach(function(x){document.getElementById("seg-"+x[0]).style.width=(x[1]/N*100)+"%";});
+  var tr=document.getElementById("track");tr.setAttribute("aria-valuenow",pct);tr.setAttribute("aria-valuetext",pct+"% done");
+  var c=document.getElementById("counts");c.textContent="";
+  [["removed",removed+" removed"],["sent",sent+(sent===1?" opt-out":" opt-outs")+" pending"],["not",notl+" not listed"],["listed",listed+" listed, needing opt-out"]].forEach(function(x){
+    var sp=el("span");sp.appendChild(el("span",{"class":"dot dot-"+x[0],"aria-hidden":"true"}));sp.appendChild(document.createTextNode(x[1]));c.appendChild(sp);});
+  if(recheck)c.appendChild(el("span",{"class":"flag"},recheck+" due for re-check"));
 }
 render();
 

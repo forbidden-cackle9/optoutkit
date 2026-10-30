@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Answers about Opt Out Kit: privacy, how the password check works, where your checklist is saved, and how people-search opt-outs work.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>FAQ · Opt Out Kit</title>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="toplinks"><a href="/">← Back to Opt Out Kit</a></div>
+  <h1>Questions</h1>
+  <p class="lede">Short answers about how Opt Out Kit works and what it does with your information. Tap a question to open it.</p>
+</header>
+
+<section aria-labelledby="h-privacy">
+  <h2 id="h-privacy">Privacy</h2>
+  <div class="faq">
+    <details>
+      <summary>Is it really free?</summary>
+      <p>Yes. No account, no ads, no paid version and nothing to upgrade to.</p>
+    </details>
+    <details>
+      <summary>Does this site track me?</summary>
+      <p>No. There are no cookies, analytics or ad trackers. The page's security settings tell your browser to block any connection except the password check, so this is enforced by your browser, not just promised.</p>
+      <p>Like every website, it's hosted somewhere: Cloudflare delivers the page and handles the normal connection data that any host sees. We only look at total visit counts, never at individual visitors.</p>
+    </details>
+    <details>
+      <summary>Can you see the password I type?</summary>
+      <p>No. Your browser turns the password into a 40-character code (a SHA-1 hash) and sends only the first 5 characters to Have I Been Pwned. It sends back every leaked code starting with those 5 characters, often hundreds of them, and your browser checks for a match on your device. Neither we nor Have I Been Pwned learn your password.</p>
+    </details>
+    <details>
+      <summary>Why does the email check send me to another site?</summary>
+      <p>Checking an email means sending the address itself, and we'd rather never handle it. Have I Been Pwned is the most widely used breach database. Its free search is all you need; skip any paid plans or protection offers there.</p>
+    </details>
+    <details>
+      <summary>How can I check these claims myself?</summary>
+      <p>The full source code is <a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">public on GitHub</a>. You can also scan the site at <a href="https://securityheaders.com/?q=optoutkit.org" target="_blank" rel="noopener noreferrer">securityheaders.com</a> to see its security rules, or open your browser's developer tools and watch the network: the only outside request is the 5-character password lookup.</p>
+    </details>
+  </div>
+</section>
+
+<section aria-labelledby="h-checklist">
+  <h2 id="h-checklist">The checklist</h2>
+  <div class="faq">
+    <details>
+      <summary>Where is my progress saved?</summary>
+      <p>Only in this browser on this device. It isn't sent anywhere, so it won't follow you to another phone or computer. Clearing your browser's site data erases it, and private or incognito windows don't keep it.</p>
+    </details>
+    <details>
+      <summary>Why do I have to update the checklist myself?</summary>
+      <p>Checking the sites automatically would mean a server sending your name and address to every people-search site, which is exactly what this tool avoids. The sites also make you confirm each removal yourself, with email links, captchas or phone codes, so no tool can finish the job for you without your details.</p>
+    </details>
+    <details>
+      <summary>What do the dates mean?</summary>
+      <p>Each site shows the date you last changed its status. When you mark an opt-out as sent, that date is saved too, and after 60 days the site is flagged so you can check whether you've been relisted.</p>
+    </details>
+    <details>
+      <summary>What does "Priority" mean?</summary>
+      <p>Those are the most widely used people-search sites, and several of them share data with others. Start there for the biggest effect.</p>
+    </details>
+  </div>
+</section>
+
+<section aria-labelledby="h-optout">
+  <h2 id="h-optout">Opting out</h2>
+  <div class="faq">
+    <details>
+      <summary>Do I have to pay to be removed?</summary>
+      <p>No. Opt-outs are always free. If a site makes you wait while it "builds a report," asks for payment or offers a background check, you're on a sales page. Use the opt-out link in the checklist instead.</p>
+    </details>
+    <details>
+      <summary>What information will the sites ask for?</summary>
+      <p>Usually an email address to confirm the request, and sometimes a phone number, birth date or the link to your listing. Give only what the form requires. A separate email address just for opt-outs keeps your main inbox out of their systems.</p>
+    </details>
+    <details>
+      <summary>How long does removal take?</summary>
+      <p>Most sites act within a few days to a few weeks. Check back after the time the site gives you, then mark it Removed.</p>
+    </details>
+    <details>
+      <summary>Why did my listing come back?</summary>
+      <p>People-search sites rebuild their records from public records and other data sources, so listings can reappear. That's why the checklist flags opt-outs older than 60 days for a re-check.</p>
+    </details>
+    <details>
+      <summary>Will this remove me from Google?</summary>
+      <p>Not directly. Once a listing is removed, it drops out of search results over time. To speed that up, or to remove results showing your phone number, address or email, use Google's "Results about you," linked under More protection on the main page.</p>
+    </details>
+    <details>
+      <summary>Should I pay a removal service instead?</summary>
+      <p>Paid services submit these same opt-outs for you and repeat them on a schedule. They save time but don't do anything you can't do yourself for free here. If your time matters more than the cost, they're a reasonable choice.</p>
+    </details>
+    <details>
+      <summary>Does this work outside the US?</summary>
+      <p>Most sites on the list cover US residents. If you live in the UK or EU, data protection law gives you the right to ask any company to delete your personal data.</p>
+    </details>
+    <details>
+      <summary>A link is broken. What should I do?</summary>
+      <p>These sites move their opt-out pages often. Search the site for "opt out" or "remove," and please report the broken link on <a href="https://github.com/forbidden-cackle9/optoutkit/issues" target="_blank" rel="noopener noreferrer">GitHub</a> so it can be fixed.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p><a href="/">Back to Opt Out Kit</a> · <a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a></p>
+</footer>
+</div>
+</body>
+</html>
