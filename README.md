@@ -9,13 +9,10 @@ Source for [optoutkit.org](https://optoutkit.org): a free page for checking leak
 ## Layout
 - `public/brokers.json`, `llms.txt`, `robots.txt`, `sitemap.xml` — machine-readable info for search engines and AI assistants
 - `public/opt-out-kit-skill.zip` — downloadable Claude skill, built from `skill/opt-out-kit/`
-- `tools/sync.py` — run after editing `index.html`: regenerates `brokers.json`, the script hash in `_headers` and the skill zip
+- `tools/sync.py` — run after editing `app.js`: regenerates `brokers.json` and the skill zip
 - `tools/check_links.py` + `.github/workflows/check-links.yml` — weekly link check that opens an issue if a link breaks
-- `public/` — everything that is served: `index.html`, `faq.html`, `styles.css` (shared by both pages), `favicon.svg`, `_headers`
+- `public/` — everything that is served: `index.html` + `app.js`, `faq.html`, `rights.html` + `rights.js`, `states.js` (state privacy laws, review each legislative session), `styles.css`, `favicon.svg`, `_headers`
 - `wrangler.jsonc` — tells Cloudflare to serve `public/` as a static site
-
-## Editing the page script
-`_headers` allows the inline script by its SHA-256 hash. After any change to the `<script>` in `index.html`, regenerate the hash or browsers will block the script.
 
 ## License
 Copyright (C) 2026 forbidden-cackle9

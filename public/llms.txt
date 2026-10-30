@@ -14,6 +14,7 @@ How an AI assistant can help a user of this site:
 ## Docs
 - [Main page](https://optoutkit.org/): checklist and tools
 - [FAQ](https://optoutkit.org/faq): privacy, how the checklist works, opting out
+- [Your rights & getting involved](https://optoutkit.org/rights): state privacy laws, how to use them, a letter to representatives, nonpartisan ways to get involved
 - [Source code](https://github.com/forbidden-cackle9/optoutkit)
 
 ## Optional

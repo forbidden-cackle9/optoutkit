@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="See what privacy rights your state gives you, how to use them, and how to push for stronger protections at the state and national level.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Your Rights · Opt Out Kit</title>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://optoutkit.org/rights">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="toplinks"><a href="/">← Back to Opt Out Kit</a><a href="/faq">FAQ</a></div>
+  <h1>Your rights &amp; getting involved</h1>
+  <p class="lede">See what your state's privacy law lets you do, use it, and help make the rules stronger where you live and nationally. Picking a state happens in your browser; nothing is sent anywhere.</p>
+</header>
+
+<section aria-labelledby="st-h">
+  <div><span class="label">Your state</span><h2 id="st-h">What are my rights?</h2></div>
+  <label class="fld"><span class="label">Choose your state</span>
+    <select id="st-pick"><option value="">Select a state</option></select></label>
+  <div id="st-out" aria-live="polite" hidden></div>
+</section>
+
+<section aria-labelledby="lt-h">
+  <div><span class="label">Speak up</span><h2 id="lt-h">Write to your representatives</h2></div>
+  <p>Lawmakers hear from data brokers' lobbyists all the time and from ordinary residents far less. A short, personal letter from a constituent gets read. Start from this draft and change anything you like; it's your letter.</p>
+  <form id="ltform" class="drform" autocomplete="off">
+    <label class="fld"><span class="label">Send to</span>
+      <select id="lt-to">
+        <option value="state">My state legislators</option>
+        <option value="federal">My members of Congress</option>
+      </select></label>
+    <label class="fld"><span class="label">Your state</span><select id="lt-state"><option value="">Select a state</option></select></label>
+    <label class="fld"><span class="label">Your name</span><input type="text" id="lt-name" placeholder="Full name"></label>
+    <label class="fld"><span class="label">City or town</span><input type="text" id="lt-city" placeholder="Shows you're a constituent"></label>
+    <label class="fld"><span class="label">Why it matters to you <span class="muted">(optional)</span></span><textarea id="lt-why" rows="3" placeholder="For example: I found my home address on six people-search sites."></textarea></label>
+  </form>
+  <div>
+    <div class="label">Draft</div>
+    <textarea id="lt-out" rows="12" readonly aria-label="Draft letter"></textarea>
+  </div>
+  <div class="row">
+    <button type="button" class="primary" id="lt-copy">Copy letter</button>
+    <span class="small muted" id="lt-status" aria-live="polite"></span>
+  </div>
+  <div>
+    <div class="label">Find who represents you</div>
+    <ul class="also">
+      <li><a href="https://openstates.org/find_your_legislator/" target="_blank" rel="noopener noreferrer">State legislators (Open States lookup)</a></li>
+      <li><a href="https://www.congress.gov/members/find-your-member" target="_blank" rel="noopener noreferrer">Members of Congress (Congress.gov)</a></li>
+    </ul>
+    <p class="small muted">These lookups ask for your address on their own sites; we never see it. Their pages list email addresses and contact forms. A phone call to the office works too.</p>
+  </div>
+</section>
+
+<section aria-labelledby="gi-h">
+  <div><span class="label">More ways</span><h2 id="gi-h">Other ways to get involved</h2></div>
+  <ul class="also">
+    <li><strong>Comment on proposed rules.</strong> When agencies write privacy rules they take public comments, and few people send them, so each one counts. Federal proposals are on <a href="https://www.regulations.gov/" target="_blank" rel="noopener noreferrer">Regulations.gov</a>. California's privacy agency posts its <a href="https://cppa.ca.gov/regulations/" target="_blank" rel="noopener noreferrer">rulemakings</a>; other states' attorneys general post theirs on their own sites.</li>
+    <li><strong>Follow privacy bills.</strong> Search for "privacy" or "data broker" on <a href="https://www.congress.gov/" target="_blank" rel="noopener noreferrer">Congress.gov</a> for federal bills and on <a href="https://openstates.org/" target="_blank" rel="noopener noreferrer">Open States</a> for your state's.</li>
+    <li><strong>Speak at a hearing.</strong> State legislatures hold public hearings on bills, and many accept written testimony from residents. Your legislature's website lists hearing schedules.</li>
+    <li><strong>Back a ballot initiative.</strong> In states that allow citizen initiatives, residents can put a law on the ballot directly. That's how California's privacy law began.</li>
+    <li><strong>Support the groups doing this work</strong>, listed below.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="gr-h">
+  <div><span class="label">Resources</span><h2 id="gr-h">Groups working on privacy</h2></div>
+  <p class="small muted">Listed as resources. We don't endorse every position they take.</p>
+  <ul class="also">
+    <li><a href="https://www.eff.org/" target="_blank" rel="noopener noreferrer"><strong>Electronic Frontier Foundation</strong></a>: digital rights legal work, guides and action alerts.</li>
+    <li><a href="https://epic.org/" target="_blank" rel="noopener noreferrer"><strong>EPIC</strong></a> (Electronic Privacy Information Center): privacy policy research and advocacy.</li>
+    <li><a href="https://advocacy.consumerreports.org/" target="_blank" rel="noopener noreferrer"><strong>Consumer Reports</strong></a>: consumer advocacy, including state and federal privacy laws.</li>
+    <li><a href="https://privacyrights.org/" target="_blank" rel="noopener noreferrer"><strong>Privacy Rights Clearinghouse</strong></a>: plain-language consumer guides and data broker information.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>State law information reviewed <span id="reviewed">October 30, 2026</span>, compiled from public legal trackers. Laws change every session, so check your state's official sources before relying on a detail, and <a href="https://github.com/forbidden-cackle9/optoutkit/issues" target="_blank" rel="noopener noreferrer">report anything out of date</a>. This page is general information, not legal advice.</p>
+  <p><a href="/">Back to Opt Out Kit</a> · <a href="/faq">FAQ</a> · <a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
+</footer>
+</div>
+<script src="/states.js"></script>
+<script src="/rights.js"></script>
+</body>
+</html>

@@ -1,15 +1,14 @@
-"""Run after editing public/index.html:
+"""Run after editing public/app.js or the skill:
   python3 tools/sync.py
-- regenerates public/brokers.json from the BROKERS list in index.html
-- regenerates the script hash in public/_headers (the CSP blocks the script otherwise)
+- regenerates public/brokers.json from the BROKERS list in app.js
 - rebuilds public/opt-out-kit-skill.zip from skill/opt-out-kit
 """
-import base64, hashlib, json, re, pathlib
+import json, re, pathlib
 from datetime import date
 from urllib.parse import urlparse
 
 root = pathlib.Path(__file__).resolve().parent.parent
-html = (root / "public/index.html").read_text(encoding="utf-8")
+html = (root / "public/app.js").read_text(encoding="utf-8")
 
 # brokers.json
 block = re.search(r"var BROKERS=\[(.*?)\n\];", html, re.S).group(1)
@@ -38,12 +37,7 @@ out = {
 }
 (root / "public/brokers.json").write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-# CSP hash for the one executable inline script
-body = re.search(r"<script>(.*?)</script>", html, re.S).group(1)
-h = base64.b64encode(hashlib.sha256(body.encode("utf-8")).digest()).decode()
-hp = root / "public/_headers"
-hp.write_text(re.sub(r"'sha256-[^']+'", f"'sha256-{h}'", hp.read_text()))
-print(f"{len(brokers)} brokers written; script hash sha256-{h}")
+print(f"{len(brokers)} brokers written")
 
 # Claude skill download (folder name must match the skill name)
 import zipfile
