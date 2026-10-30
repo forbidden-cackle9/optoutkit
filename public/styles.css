@@ -126,3 +126,10 @@ table.rank tr{cursor:pointer}
 .chip-s{display:inline-block;min-width:2.6em;text-align:center;border-radius:4px;padding:1px 6px;font-weight:700;color:#1d2a1f}
 .method summary{cursor:pointer;font-weight:600;padding:8px 0}
 .method p,.method ul{margin-top:10px}
+.support-slot{color:var(--muted)}
+.fund-bar{height:8px;max-width:320px;margin-top:6px;border-radius:999px;background:var(--rule);overflow:hidden}
+.fund-bar span{display:block;height:100%;background:#2E9E5B}
+table.costs{border-collapse:collapse;margin-top:8px;font-variant-numeric:tabular-nums}
+table.costs td{padding:4px 12px 4px 0;border-bottom:1px solid var(--rule)}
+table.costs td.num{text-align:right}
+table.costs tr.tot td{font-weight:700;border-bottom:0}

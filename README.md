@@ -10,6 +10,7 @@ Source for [optoutkit.org](https://optoutkit.org): a free page for checking leak
 - `public/brokers.json`, `llms.txt`, `robots.txt`, `sitemap.xml` — machine-readable info for search engines and AI assistants
 - `public/opt-out-kit-skill.zip` — downloadable Claude skill, built from `skill/opt-out-kit/`
 - `tools/sync.py` — run after editing `app.js`: regenerates `brokers.json` and the skill zip
+- `public/funding.js` — running costs, support received (after fees) and support links. Support stays hidden until a link is set, and the links disappear once costs are covered.
 - `tools/scores.py` — the state privacy ranking: run it to regenerate `public/scores.js` (rights page heat map) and `public/us-privacy-ranking.xlsx` (download). Review each January.
 - `tools/check_links.py` + `.github/workflows/check-links.yml` — weekly link check that opens an issue if a link breaks
 - `public/` — everything that is served: `index.html` + `app.js`, `faq.html`, `rights.html` + `rights.js`, `states.js` (state privacy laws, review each legislative session), `styles.css`, `favicon.svg`, `_headers`
