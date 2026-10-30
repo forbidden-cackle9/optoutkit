@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Remove yourself from people-search sites, free. Check leaked passwords privately. No account, no tracking.">
+<meta name="description" content="Remove yourself from people-search sites, freeze your credit, rein in big tech and check leaked passwords, free. No account, no tracking.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Opt Out Kit</title>
@@ -17,146 +17,96 @@
 <body>
 <div class="wrap">
 <header>
+  <nav class="toplinks" aria-label="Site">
+    <a href="/">Home</a><a href="/remove">Remove listings</a><a href="/lockdown">Lock it down</a><a href="/bigtech">Big tech</a><a href="/tools">Tools</a><a href="/rights">Your rights</a><a href="/faq">FAQ</a>
+  </nav>
   <span class="label">Free · No account · No tracking</span>
   <h1>Opt Out Kit</h1>
-  <p class="lede">Remove yourself from people-search sites, free. See where your personal details are exposed, then take them down. This page runs in your browser. It doesn't know who you are and stores nothing on any server.</p>
+  <p class="lede">Take your personal information back from people-search sites, data brokers and big tech, for free. Everything runs in your browser. This site doesn't know who you are and stores nothing on any server.</p>
   <div class="promise">
-    <span class="chip">No cookies</span><span class="chip">No analytics</span><span class="chip">No ad trackers</span><span class="chip">Your checklist stays on this device</span>
+    <span class="chip">No cookies</span><span class="chip">No analytics</span><span class="chip">No ad trackers</span><span class="chip">Your progress stays on this device</span>
   </div>
-  <div class="toplinks"><a href="/faq">Questions? Read the FAQ</a><a href="/rights">Your rights &amp; getting involved</a><a href="/bigtech">Big tech accounts</a></div>
 </header>
 
-<section aria-labelledby="br-h">
-  <div><span class="label">Main checklist</span><h2 id="br-h">Remove yourself from people-search sites</h2></div>
-  <p>Work down the list. Each opt-out link takes you straight to the site's removal page, which finds your record for you. A few sites need the link to your profile first, so those also have a <strong>Find your profile</strong> link. Sites marked <span class="tag" style="margin:0">Priority</span> are the most widely used. Sites often relist people, so re-check anything you opted out of more than 60 days ago.</p>
-  <p class="note"><strong>Opting out is always free.</strong> If a site makes you wait while it "builds a report," asks for payment, or offers a background check, you're on a sales page. Close it and use the opt-out link here instead.</p>
+<section aria-labelledby="all-h">
+  <div><span class="label">Your progress</span><h2 id="all-h">How far you've come</h2></div>
   <div class="progress">
-    <div class="pct-row"><span class="pct" id="pct">0%</span><span class="muted" id="pctnote"></span></div>
-    <div class="track" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="100" id="track"><span class="seg seg-removed" id="seg-removed"></span><span class="seg seg-sent" id="seg-sent"></span><span class="seg seg-not" id="seg-not"></span><span class="seg seg-listed" id="seg-listed"></span></div>
-    <div class="counts small" id="counts"></div>
+    <div class="pct-row"><span class="pct" id="all-pct">0%</span><span class="muted" id="all-note"></span></div>
+    <div class="track" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="100" id="all-track"><span class="seg seg-removed" id="all-fill"></span></div>
   </div>
-  <ul class="brokers" id="brokers"></ul>
-  <div class="confirm">
-    <button type="button" class="ghost" id="reset">Reset checklist</button>
-    <span id="resetask" hidden>Clear every status and date? <button type="button" class="primary" id="resetyes">Yes, clear</button> <button type="button" class="ghost" id="resetno">Cancel</button></span>
-  </div>
-  <div class="keep">
-    <h3>Keep track</h3>
-    <p class="small muted">These run in your browser. Nothing is sent anywhere unless you paste or share it yourself.</p>
-    <div class="row">
-      <button type="button" class="ghost" id="k-ai">Copy summary for my AI assistant</button>
-      <button type="button" class="ghost" id="k-cal">Add re-check reminders to my calendar</button>
-      <button type="button" class="ghost" id="k-exp">Export progress</button>
-      <label class="btn ghost" for="k-imp">Import progress</label><input type="file" id="k-imp" accept=".json,application/json" class="vh">
-    </div>
-    <p class="small" id="k-status" aria-live="polite"></p>
-  </div>
-  <p class="small muted" id="storenote">Your progress is saved in this browser only. Clearing site data or using a private window removes it. Use Export progress to keep a copy or move it to another device.</p>
-</section>
-
-<div class="group-head"><h2 class="group">Tools</h2><p class="muted">Quick checks to run any time you set a new password or hear about a breach.</p></div>
-
-<section aria-labelledby="pw-h">
-  <div><span class="label">Tool</span><h2 id="pw-h">Has a password leaked?</h2></div>
-  <p>Type a password you use. Your browser scrambles it into a 40-character code (a SHA-1 hash). Only the first 5 characters are sent to Have I Been Pwned, which returns every leaked code starting with them. Your browser does the matching, so the password never leaves this device.</p>
-  <form id="pwform" class="row" autocomplete="off">
-    <label for="pw" class="label" style="flex-basis:100%">Password</label>
-    <input id="pw" type="password" spellcheck="false" autocomplete="off" placeholder="Type a password">
-    <button type="submit" class="primary" id="pwgo">Check</button>
-    <button type="button" class="ghost" id="pwshow" aria-pressed="false">Show</button>
-    <button type="button" class="ghost" id="pwclear">Clear</button>
-  </form>
-  <div>
-    <div class="label">What gets sent</div>
-    <div class="hash" id="hashview" aria-live="polite"><span class="sent">5BAA6</span><span class="kept">···································</span> <span class="muted small">(example: the word "password")</span></div>
-  </div>
-  <div id="pwresult" aria-live="polite" hidden></div>
-</section>
-
-<section aria-labelledby="em-h">
-  <div><span class="label">Tool</span><h2 id="em-h">Has your email been in a breach?</h2></div>
-  <p>For this step we send you to Have I Been Pwned, and that's on purpose. Checking an email means sending the address itself, and we'd rather never see it. Have I Been Pwned is the most widely used breach database and has been running since 2013.</p>
-  <ul class="also">
-    <li><strong>Type your email in the search box on their home page.</strong> The free search is all you need.</li>
-    <li><strong>Skip the paid plans, sponsor ads and protection offers.</strong> You don't need any of them to finish this step.</li>
-    <li><strong>If breaches show up,</strong> change your password on those sites and anywhere you reused it, and turn on two-step login where it's offered.</li>
-    <li><strong>"No breaches found" is good news,</strong> but not a guarantee. Keep using a different password on every site.</li>
+  <ul class="arearows">
+    <li data-area="brokers"><a href="/remove">Remove your listings</a><span class="mini" aria-hidden="true"><span></span></span><span class="cnt small muted"></span></li>
+    <li data-area="lockdown"><a href="/lockdown">Lock it down</a><span class="mini" aria-hidden="true"><span></span></span><span class="cnt small muted"></span></li>
+    <li data-area="bigtech"><a href="/bigtech">Big tech accounts</a><span class="mini" aria-hidden="true"><span></span></span><span class="cnt small muted"></span></li>
   </ul>
-  <div class="row"><a class="btn ghost" href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Search your email on Have I Been Pwned</a></div>
+  <p class="flag" id="due" hidden></p>
+  <div class="row"><a class="btn primary" id="continue" href="/remove">Start here: remove your listings</a></div>
 </section>
 
-<section aria-labelledby="dr-h">
-  <div><span class="label">Tool</span><h2 id="dr-h">Draft a removal request</h2></div>
-  <p>For sites that take requests by email, or companies with no opt-out form. Fill in what you're comfortable sharing and get a ready-to-send draft. Nothing you type here is saved or sent anywhere; you send the email yourself.</p>
-  <form id="drform" class="drform" autocomplete="off">
-    <label class="fld"><span class="label">Send to</span>
-      <select id="dr-to">
-        <option value="mylife">MyLife (privacy@mylife.com)</option>
-        <option value="usphonebook">USPhoneBook (support+optout@usphonebook.com)</option>
-        <option value="other">Another company</option>
-      </select></label>
-    <label class="fld" id="dr-other-wrap" hidden><span class="label">Company name and email</span>
-      <span class="pair"><input type="text" id="dr-co" placeholder="Company name"><input type="text" id="dr-addr" placeholder="privacy@example.com" inputmode="email"></span></label>
-    <label class="fld"><span class="label">Type of request</span>
-      <select id="dr-type">
-        <option value="optout">Opt-out: remove listing</option>
-        <option value="ccpa">Deletion: California law</option>
-        <option value="state">Deletion: my state's law</option>
-        <option value="gdpr">Erasure: UK and EU law</option>
-      </select></label>
-    <label class="fld" id="dr-state-wrap" hidden><span class="label">Your state</span>
-      <select id="dr-state"></select></label>
-    <label class="fld"><span class="label">Full name</span><input type="text" id="dr-name" placeholder="As it appears on the listing"></label>
-    <label class="fld"><span class="label">City and state <span class="muted">(optional)</span></span><input type="text" id="dr-place" placeholder="Helps them find the right record"></label>
-    <label class="fld"><span class="label">Link to your listing <span class="muted">(optional)</span></span><input type="text" id="dr-link" placeholder="https://"></label>
-  </form>
-  <div>
-    <div class="label">Draft</div>
-    <textarea id="dr-out" rows="12" readonly aria-label="Draft email"></textarea>
-  </div>
+<div class="cards">
+  <a class="card" href="/remove" data-area="brokers">
+    <h3>Remove your listings</h3>
+    <p class="small">Take yourself off the people-search sites that publish your address, phone number and relatives.</p>
+    <div class="mini" aria-hidden="true"><span></span></div>
+    <span class="cnt small muted"></span>
+    <span class="go">Open the checklist →</span>
+  </a>
+  <a class="card" href="/lockdown" data-area="lockdown">
+    <h3>Lock it down</h3>
+    <p class="small">Free credit freezes, an IRS PIN, a bank-account freeze and a browser setting that stops data sales.</p>
+    <div class="mini" aria-hidden="true"><span></span></div>
+    <span class="cnt small muted"></span>
+    <span class="go">Lock it down →</span>
+  </a>
+  <a class="card" href="/bigtech" data-area="bigtech">
+    <h3>Big tech accounts</h3>
+    <p class="small">Shrink what Google, Amazon, Meta, Microsoft and Apple keep, and stop it being used for ads.</p>
+    <div class="mini" aria-hidden="true"><span></span></div>
+    <span class="cnt small muted"></span>
+    <span class="go">Review accounts →</span>
+  </a>
+  <a class="card" href="/tools">
+    <h3>Tools</h3>
+    <p class="small">Check a password privately, look up email breaches, and draft removal requests.</p>
+    <span class="go">Open tools →</span>
+  </a>
+  <a class="card" href="/rights">
+    <h3>Your rights</h3>
+    <p class="small">See what your state's privacy law lets you do, how states compare, and how to push for stronger laws.</p>
+    <span class="go">See your rights →</span>
+  </a>
+  <a class="card" href="/faq">
+    <h3>Questions</h3>
+    <p class="small">How the site protects your privacy, how opt-outs work, and how it's paid for.</p>
+    <span class="go">Read the FAQ →</span>
+  </a>
+</div>
+
+  <section aria-labelledby="keep-h" id="keep">
+  <div><span class="label">Keep track</span><h2 id="keep-h">Reminders, backup and AI help</h2></div>
+  <p class="small muted">These cover every checklist and run in your browser. Nothing is sent anywhere unless you paste or share it yourself.</p>
   <div class="row">
-    <button type="button" class="primary" id="dr-copy">Copy draft</button>
-    <a class="btn ghost" id="dr-mail" href="#">Open in email app</a>
-    <span class="small muted" id="dr-status" aria-live="polite"></span>
+    <button type="button" class="ghost" id="k-ai">Copy summary for my AI assistant</button>
+    <button type="button" class="ghost" id="k-cal">Add re-check reminders to my calendar</button>
+    <button type="button" class="ghost" id="k-exp">Export progress</button>
+    <label class="btn ghost" for="k-imp">Import progress</label><input type="file" id="k-imp" accept=".json,application/json" class="vh">
   </div>
-  <p class="small muted">Send it from the email address you want them to reply to. Don't add ID numbers such as a Social Security number; if a company needs to verify you, it can ask. These drafts are templates, not legal advice.</p>
+  <p class="small" id="k-status" aria-live="polite"></p>
 </section>
 
-<section aria-labelledby="more-h">
-  <div><span class="label">More protection</span><h2 id="more-h">Lock down the rest</h2></div>
-  <ul class="also">
-    <li><strong>Freeze your credit</strong> at all three bureaus. It's free and blocks new accounts in your name: <a href="https://www.equifax.com/personal/credit-report-services/credit-freeze/" target="_blank" rel="noopener noreferrer">Equifax</a>, <a href="https://www.experian.com/freeze/center.html" target="_blank" rel="noopener noreferrer">Experian</a>, <a href="https://www.transunion.com/credit-freeze/place-credit-freeze" target="_blank" rel="noopener noreferrer">TransUnion</a>.</li>
-    <li><strong>Google "Results about you"</strong> finds search results showing your phone, address or email and lets you request removal: <a href="https://support.google.com/websearch/answer/12719076" target="_blank" rel="noopener noreferrer">how it works</a>.</li>
-    <li><strong>Stop prescreened credit offers</strong> in the mail: <a href="https://www.optoutprescreen.com/" target="_blank" rel="noopener noreferrer">OptOutPrescreen.com</a>.</li>
-    <li><strong>Join the Do Not Call Registry</strong>: <a href="https://www.donotcall.gov/" target="_blank" rel="noopener noreferrer">donotcall.gov</a>.</li>
-    <li><strong>California residents</strong> can send one deletion request to 500+ registered data brokers through the state's free <a href="https://consumer.drop.privacy.ca.gov" target="_blank" rel="noopener noreferrer">DROP portal</a>.</li>
-  </ul>
-</section>
-
-<section aria-labelledby="bg-h">
-  <div><span class="label">Next step</span><h2 id="bg-h">Big tech accounts</h2></div>
-  <p>Google, Amazon, Meta, Microsoft and Apple hold more about you than any people-search site. You can't make them forget you while you use them, but you can shrink what they keep and stop it being used for ads. A short checklist links to each company's own directions.</p>
-  <div class="row"><a class="btn ghost" href="/bigtech">Start the big tech checklist</a></div>
-</section>
-
-<section aria-labelledby="rt-h">
-  <div><span class="label">Change the rules</span><h2 id="rt-h">Your rights &amp; getting involved</h2></div>
-  <p>See what your state's privacy law lets you do, and how to push for stronger protections where you live and nationally, with a ready-to-edit letter to your representatives.</p>
-  <div class="row"><a class="btn ghost" href="/rights">See your state's rights</a></div>
-</section>
 
 <footer>
   <p class="support-slot small" hidden></p>
-  <p><a href="/faq">FAQ</a> · <a href="/rights">Your rights</a> · <a href="/bigtech">Big tech</a> · <a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
-  <p>Opt-out links come from the volunteer-maintained <a href="https://github.com/yaelwrites/Big-Ass-Data-Broker-Opt-Out-List" target="_blank" rel="noopener noreferrer">Big Ass Data Broker Opt-Out List</a>. Breach data comes from <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a>.</p>
-  <p>Broker sites change their forms often. If a link is broken, the site may have moved its opt-out page; search the site for "opt out" or "remove".</p>
+  <p><a href="/">Home</a> · <a href="/remove">Remove listings</a> · <a href="/lockdown">Lock it down</a> · <a href="/bigtech">Big tech</a> · <a href="/tools">Tools</a> · <a href="/rights">Your rights</a> · <a href="/faq">FAQ</a></p>
+  <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
 </footer>
 </div>
-
 <script src="/funding.js"></script>
 <script src="/support.js"></script>
-<script src="/states.js"></script>
-<script src="/app.js"></script>
-
+<script src="/common.js"></script>
+<script src="/brokers-data.js"></script>
+<script src="/lockdown-data.js"></script>
+<script src="/bigtech-data.js"></script>
+<script src="/home.js"></script>
 </body>
 </html>

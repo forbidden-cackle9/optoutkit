@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Remove yourself from people-search sites for free, with a checklist that saves your progress in your own browser.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Remove Your Listings · Opt Out Kit</title>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://optoutkit.org/remove">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <nav class="toplinks" aria-label="Site">
+    <a href="/">Home</a><a href="/remove">Remove listings</a><a href="/lockdown">Lock it down</a><a href="/bigtech">Big tech</a><a href="/tools">Tools</a><a href="/rights">Your rights</a><a href="/faq">FAQ</a>
+  </nav>
+  <span class="label">Free · No account · No tracking</span>
+  <h1>Remove your listings</h1>
+  <p class="lede">People-search sites publish home addresses, phone numbers and relatives' names. Work down this list to take yourself off the biggest ones. Your progress is saved only in this browser.</p>
+</header>
+
+<section aria-labelledby="br-h">
+  <div><span class="label">Checklist</span><h2 id="br-h">Remove yourself from people-search sites</h2></div>
+  <p>Work down the list. Each opt-out link takes you straight to the site's removal page, which finds your record for you. A few sites need the link to your profile first, so those also have a <strong>Find your profile</strong> link. Sites marked <span class="tag" style="margin:0">Priority</span> are the most widely used. Sites often relist people, so re-check anything you opted out of more than 60 days ago.</p>
+  <p class="note"><strong>Opting out is always free.</strong> If a site makes you wait while it "builds a report," asks for payment, or offers a background check, you're on a sales page. Close it and use the opt-out link here instead.</p>
+  <div class="progress">
+    <div class="pct-row"><span class="pct" id="pct">0%</span><span class="muted" id="pctnote"></span></div>
+    <div class="track" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="100" id="track"><span class="seg seg-removed" id="seg-removed"></span><span class="seg seg-sent" id="seg-sent"></span><span class="seg seg-not" id="seg-not"></span><span class="seg seg-listed" id="seg-listed"></span></div>
+    <div class="counts small" id="counts"></div>
+  </div>
+  <ul class="brokers" id="brokers"></ul>
+  <div class="confirm">
+    <button type="button" class="ghost" id="reset">Reset checklist</button>
+    <span id="resetask" hidden>Clear every status and date? <button type="button" class="primary" id="resetyes">Yes, clear</button> <button type="button" class="ghost" id="resetno">Cancel</button></span>
+  </div>
+  <p class="small muted" id="storenote">Your progress is saved in this browser only. Clearing site data or using a private window removes it. <a href="/#keep">Reminders, export and the AI summary</a> are on the home page.</p>
+</section>
+
+<footer>
+  <p class="support-slot small" hidden></p>
+  <p><a href="/">Home</a> · <a href="/remove">Remove listings</a> · <a href="/lockdown">Lock it down</a> · <a href="/bigtech">Big tech</a> · <a href="/tools">Tools</a> · <a href="/rights">Your rights</a> · <a href="/faq">FAQ</a></p>
+  <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
+</footer>
+</div>
+<script src="/funding.js"></script>
+<script src="/support.js"></script>
+<script src="/common.js"></script>
+<script src="/brokers-data.js"></script>
+<script src="/remove.js"></script>
+</body>
+</html>

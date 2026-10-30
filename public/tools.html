@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Check a password privately, see if your email was in a breach, and draft data removal requests. Nothing you type is stored or sent.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Tools · Opt Out Kit</title>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://optoutkit.org/tools">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <nav class="toplinks" aria-label="Site">
+    <a href="/">Home</a><a href="/remove">Remove listings</a><a href="/lockdown">Lock it down</a><a href="/bigtech">Big tech</a><a href="/tools">Tools</a><a href="/rights">Your rights</a><a href="/faq">FAQ</a>
+  </nav>
+  <h1>Tools</h1>
+  <p class="lede">Quick checks and drafts that run in your browser. Use them any time you set a new password, hear about a breach, or need to write to a company.</p>
+</header>
+
+<section aria-labelledby="pw-h">
+  <div><span class="label">Tool</span><h2 id="pw-h">Has a password leaked?</h2></div>
+  <p>Type a password you use. Your browser scrambles it into a 40-character code (a SHA-1 hash). Only the first 5 characters are sent to Have I Been Pwned, which returns every leaked code starting with them. Your browser does the matching, so the password never leaves this device.</p>
+  <form id="pwform" class="row" autocomplete="off">
+    <label for="pw" class="label" style="flex-basis:100%">Password</label>
+    <input id="pw" type="password" spellcheck="false" autocomplete="off" placeholder="Type a password">
+    <button type="submit" class="primary" id="pwgo">Check</button>
+    <button type="button" class="ghost" id="pwshow" aria-pressed="false">Show</button>
+    <button type="button" class="ghost" id="pwclear">Clear</button>
+  </form>
+  <div>
+    <div class="label">What gets sent</div>
+    <div class="hash" id="hashview" aria-live="polite"><span class="sent">5BAA6</span><span class="kept">···································</span> <span class="muted small">(example: the word "password")</span></div>
+  </div>
+  <div id="pwresult" aria-live="polite" hidden></div>
+</section>
+
+<section aria-labelledby="em-h">
+  <div><span class="label">Tool</span><h2 id="em-h">Has your email been in a breach?</h2></div>
+  <p>For this step we send you to Have I Been Pwned, and that's on purpose. Checking an email means sending the address itself, and we'd rather never see it. Have I Been Pwned is the most widely used breach database and has been running since 2013.</p>
+  <ul class="also">
+    <li><strong>Type your email in the search box on their home page.</strong> The free search is all you need.</li>
+    <li><strong>Skip the paid plans, sponsor ads and protection offers.</strong> You don't need any of them to finish this step.</li>
+    <li><strong>If breaches show up,</strong> change your password on those sites and anywhere you reused it, and turn on two-step login where it's offered.</li>
+    <li><strong>"No breaches found" is good news,</strong> but not a guarantee. Keep using a different password on every site.</li>
+  </ul>
+  <div class="row"><a class="btn ghost" href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Search your email on Have I Been Pwned</a></div>
+</section>
+
+<section aria-labelledby="dr-h">
+  <div><span class="label">Tool</span><h2 id="dr-h">Draft a removal request</h2></div>
+  <p>For sites that take requests by email, or companies with no opt-out form. Fill in what you're comfortable sharing and get a ready-to-send draft. Nothing you type here is saved or sent anywhere; you send the email yourself.</p>
+  <form id="drform" class="drform" autocomplete="off">
+    <label class="fld"><span class="label">Send to</span>
+      <select id="dr-to">
+        <option value="mylife">MyLife (privacy@mylife.com)</option>
+        <option value="usphonebook">USPhoneBook (support+optout@usphonebook.com)</option>
+        <option value="other">Another company</option>
+      </select></label>
+    <label class="fld" id="dr-other-wrap" hidden><span class="label">Company name and email</span>
+      <span class="pair"><input type="text" id="dr-co" placeholder="Company name"><input type="text" id="dr-addr" placeholder="privacy@example.com" inputmode="email"></span></label>
+    <label class="fld"><span class="label">Type of request</span>
+      <select id="dr-type">
+        <option value="optout">Opt-out: remove listing</option>
+        <option value="ccpa">Deletion: California law</option>
+        <option value="state">Deletion: my state's law</option>
+        <option value="gdpr">Erasure: UK and EU law</option>
+      </select></label>
+    <label class="fld" id="dr-state-wrap" hidden><span class="label">Your state</span>
+      <select id="dr-state"></select></label>
+    <label class="fld"><span class="label">Full name</span><input type="text" id="dr-name" placeholder="As it appears on the listing"></label>
+    <label class="fld"><span class="label">City and state <span class="muted">(optional)</span></span><input type="text" id="dr-place" placeholder="Helps them find the right record"></label>
+    <label class="fld"><span class="label">Link to your listing <span class="muted">(optional)</span></span><input type="text" id="dr-link" placeholder="https://"></label>
+  </form>
+  <div>
+    <div class="label">Draft</div>
+    <textarea id="dr-out" rows="12" readonly aria-label="Draft email"></textarea>
+  </div>
+  <div class="row">
+    <button type="button" class="primary" id="dr-copy">Copy draft</button>
+    <a class="btn ghost" id="dr-mail" href="#">Open in email app</a>
+    <span class="small muted" id="dr-status" aria-live="polite"></span>
+  </div>
+  <p class="small muted">Send it from the email address you want them to reply to. Don't add ID numbers such as a Social Security number; if a company needs to verify you, it can ask. These drafts are templates, not legal advice.</p>
+</section>
+
+<footer>
+  <p class="support-slot small" hidden></p>
+  <p><a href="/">Home</a> · <a href="/remove">Remove listings</a> · <a href="/lockdown">Lock it down</a> · <a href="/bigtech">Big tech</a> · <a href="/tools">Tools</a> · <a href="/rights">Your rights</a> · <a href="/faq">FAQ</a></p>
+  <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
+</footer>
+</div>
+<script src="/funding.js"></script>
+<script src="/support.js"></script>
+<script src="/common.js"></script>
+<script src="/states.js"></script>
+<script src="/tools.js"></script>
+</body>
+</html>

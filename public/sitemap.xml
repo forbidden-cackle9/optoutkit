@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://optoutkit.org/</loc></url>
-  <url><loc>https://optoutkit.org/faq</loc></url>
-  <url><loc>https://optoutkit.org/rights</loc></url>
+  <url><loc>https://optoutkit.org/remove</loc></url>
+  <url><loc>https://optoutkit.org/lockdown</loc></url>
   <url><loc>https://optoutkit.org/bigtech</loc></url>
+  <url><loc>https://optoutkit.org/tools</loc></url>
+  <url><loc>https://optoutkit.org/rights</loc></url>
+  <url><loc>https://optoutkit.org/faq</loc></url>
 </urlset>

@@ -1,7 +1,5 @@
-(function(){
-"use strict";
-/* Each step links to the company's own directions. Reviewed 2026-10-30. */
-var CO=[
+/* Big tech steps. Each links to the company's own directions. Reviewed 2026-10-30. */
+window.OOK_BIGTECH=[
  {id:"google",name:"Google",intro:"Search, Gmail, Maps, YouTube and Android. Google also sees much of the wider web through its ads and analytics on other sites.",steps:[
   {id:"g-dl",t:"See what Google has",d:"Download a copy of everything in your account with Google Takeout. It can take hours to prepare.",u:"https://support.google.com/accounts/answer/3024190"},
   {id:"g-auto",t:"Auto-delete or pause your activity",d:"Set Web & App Activity and YouTube history to delete automatically after 3 months, or turn them off.",u:"https://support.google.com/accounts/answer/6139018"},
@@ -24,43 +22,3 @@ var CO=[
   {id:"ap-ads",t:"Turn off personalized ads",d:"Stop Apple using your activity to target ads in the App Store, News and Stocks.",u:"https://support.apple.com/en-us/105131"},
   {id:"ap-track",t:"Stop apps tracking you",d:"Turn off “Allow apps to request to track” so other apps can't follow you across apps and websites.",u:"https://support.apple.com/en-us/102420"}]}
 ];
-window.OOK_BIGTECH=CO;
-var KEY="optoutkit-bigtech-v1",st={};
-try{st=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){st={};}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
-function el(tag,attrs,text){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
-function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
-function nice(s){return new Date(s+"T00:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});}
-var root=document.getElementById("companies");if(!root)return;
-var total=0;
-CO.forEach(function(c){
-  var sec=el("section",{"aria-labelledby":"h-"+c.id});
-  var head=el("div");head.appendChild(el("span",{"class":"label",id:"n-"+c.id},""));head.appendChild(el("h2",{id:"h-"+c.id},c.name));sec.appendChild(head);
-  sec.appendChild(el("p",{"class":"muted"},c.intro));
-  var ul=el("ul",{"class":"steps"});
-  c.steps.forEach(function(s){total++;
-    var li=el("li",{"class":"step",id:"s-"+s.id});
-    var lab=el("label",{"class":"chk"});var cb=el("input",{type:"checkbox",id:"c-"+s.id});lab.appendChild(cb);lab.appendChild(el("span",{"class":"vh"},"Done: "+s.t));
-    var body=el("div",{"class":"sbody"});body.appendChild(el("h3",{},s.t));body.appendChild(el("p",{"class":"small"},s.d));
-    var row=el("div",{"class":"links"});row.appendChild(el("a",{href:s.u,target:"_blank",rel:"noopener noreferrer"},"Directions from "+c.name));body.appendChild(row);
-    body.appendChild(el("span",{"class":"when",id:"w-"+s.id}));
-    li.appendChild(lab);li.appendChild(body);ul.appendChild(li);
-    cb.addEventListener("change",function(){if(cb.checked)st[s.id]=today();else delete st[s.id];save();render();});
-  });
-  sec.appendChild(ul);root.appendChild(sec);
-});
-function render(){
-  var done=0;
-  CO.forEach(function(c){var n=0;c.steps.forEach(function(s){var d=st[s.id];document.getElementById("c-"+s.id).checked=!!d;
-    var w=document.getElementById("w-"+s.id);w.textContent=d?"Done on "+nice(d):"";w.hidden=!d;
-    document.getElementById("s-"+s.id).classList.toggle("done",!!d);if(d){n++;done++;}});
-    document.getElementById("n-"+c.id).textContent=n+" of "+c.steps.length+" done";});
-  var pct=Math.round(done/total*100);
-  document.getElementById("bt-pct").textContent=pct+"%";
-  document.getElementById("bt-note").textContent="done · "+done+" of "+total+" steps";
-  var f=document.getElementById("bt-fill");f.style.width=pct+"%";
-  var tr=document.getElementById("bt-track");tr.setAttribute("aria-valuenow",pct);tr.setAttribute("aria-valuetext",pct+"% done");
-}
-render();
-document.getElementById("bt-reset").addEventListener("click",function(){if(window.confirm("Clear all checkmarks on this page?")){st={};save();render();}});
-})();

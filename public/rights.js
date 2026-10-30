@@ -36,7 +36,7 @@ function showState(){
     if(!st.limited){
       var li=el("li");li.appendChild(el("strong",{},"Use it: "));
       li.appendChild(document.createTextNode("draft a deletion request citing "+lawName(st)+" with "));
-      li.appendChild(el("a",{href:st.c==="CA"?"/#draft-CA":"/#draft-"+st.c},"the request tool"));li.appendChild(document.createTextNode("."));ul.appendChild(li);
+      li.appendChild(el("a",{href:"/tools#draft-"+st.c},"the request tool"));li.appendChild(document.createTextNode("."));ul.appendChild(li);
     }
     var li2=el("li");li2.appendChild(el("strong",{},"If a company ignores you: "));
     if(st.agency){li2.appendChild(document.createTextNode("file a complaint with the "));li2.appendChild(ext(st.agencyUrl,st.agency));li2.appendChild(document.createTextNode(" or your "));}

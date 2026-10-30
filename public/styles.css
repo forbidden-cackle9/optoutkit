@@ -140,3 +140,16 @@ table.costs tr.tot td{font-weight:700;border-bottom:0}
 .chk input{width:22px;height:22px;margin:2px 0 0;accent-color:#2E9E5B;cursor:pointer}
 .sbody{display:flex;flex-direction:column;gap:4px;min-width:0}
 .step.done h3{color:var(--ok)}
+nav.toplinks{gap:6px 14px;font-size:.92rem}
+.arearows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.arearows li{display:grid;grid-template-columns:minmax(0,10em) 1fr auto;gap:10px;align-items:center}
+.arearows a{font-weight:600}
+.mini{display:block;height:8px;border-radius:999px;background:var(--rule);overflow:hidden}
+.mini span{display:block;height:100%;width:0;background:#2E9E5B;transition:width .3s}
+@media (max-width:560px){.arearows li{grid-template-columns:1fr auto}.arearows .mini{grid-column:1/-1;order:3}}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:8px;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:18px;color:var(--ink);text-decoration:none}
+.card:hover{border-color:var(--accent)}
+.card h3{font-family:var(--display);font-size:1.25rem}
+.card .go{margin-top:auto;color:var(--accent);font-weight:600}
+@media (prefers-reduced-motion:reduce){.mini span{transition:none}}

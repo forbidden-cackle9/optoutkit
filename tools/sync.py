@@ -1,6 +1,6 @@
-"""Run after editing public/app.js or the skill:
+"""Run after editing public/brokers-data.js or the skill:
   python3 tools/sync.py
-- regenerates public/brokers.json from the BROKERS list in app.js
+- regenerates public/brokers.json from the OOK_BROKERS list in brokers-data.js
 - rebuilds public/opt-out-kit-skill.zip from skill/opt-out-kit
 """
 import json, re, pathlib
@@ -8,10 +8,10 @@ from datetime import date
 from urllib.parse import urlparse
 
 root = pathlib.Path(__file__).resolve().parent.parent
-html = (root / "public/app.js").read_text(encoding="utf-8")
+html = (root / "public/brokers-data.js").read_text(encoding="utf-8")
 
 # brokers.json
-block = re.search(r"var BROKERS=\[(.*?)\n\];", html, re.S).group(1)
+block = re.search(r"window.OOK_BROKERS=\[(.*?)\n\];", html, re.S).group(1)
 brokers = []
 for line in block.strip().splitlines():
     pairs = re.findall(r'(\w+):(?:"((?:[^"\\]|\\.)*)"|(\d))', line)

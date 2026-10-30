@@ -14,7 +14,9 @@
 <body>
 <div class="wrap">
 <header>
-  <div class="toplinks"><a href="/">← Back to Opt Out Kit</a><a href="/rights">Your rights</a><a href="/faq">FAQ</a></div>
+  <nav class="toplinks" aria-label="Site">
+    <a href="/">Home</a><a href="/remove">Remove listings</a><a href="/lockdown">Lock it down</a><a href="/bigtech">Big tech</a><a href="/tools">Tools</a><a href="/rights">Your rights</a><a href="/faq">FAQ</a>
+  </nav>
   <h1>Big tech accounts</h1>
   <p class="lede">Google, Amazon and the other giants are different from people-search sites. You're their customer, so you can't make them forget you while you use them. You can shrink what they keep and stop it being used for ads. Each step below links to the company's own directions.</p>
 </header>
@@ -29,7 +31,7 @@
   <div class="row"><button type="button" class="ghost" id="bt-reset">Clear checkmarks</button></div>
 </section>
 
-<div id="companies" class="companies"></div>
+<div id="companies" class="companies" data-set="bigtech"></div>
 
 <section aria-labelledby="lim-h">
   <div><span class="label">Good to know</span><h2 id="lim-h">What these steps can't do</h2></div>
@@ -44,11 +46,14 @@
 <footer>
   <p class="support-slot small" hidden></p>
   <p>Directions reviewed October 30, 2026. Each link goes to the company's own help or settings page.</p>
-  <p><a href="/">Back to Opt Out Kit</a> · <a href="/rights">Your rights</a> · <a href="/faq">FAQ</a> · <a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
+  <p><a href="/">Home</a> · <a href="/remove">Remove listings</a> · <a href="/lockdown">Lock it down</a> · <a href="/bigtech">Big tech</a> · <a href="/tools">Tools</a> · <a href="/rights">Your rights</a> · <a href="/faq">FAQ</a></p>
+  <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
 </footer>
 </div>
 <script src="/funding.js"></script>
 <script src="/support.js"></script>
-<script src="/bigtech.js"></script>
+<script src="/common.js"></script>
+<script src="/bigtech-data.js"></script>
+<script src="/steps.js"></script>
 </body>
 </html>

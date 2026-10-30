@@ -18,9 +18,9 @@ Opt Out Kit (https://optoutkit.org) is a free, no-tracking checklist for removin
 Fetch https://optoutkit.org/brokers.json when you need site details. Each broker has `optOutUrl`, `officialDomains`, `needsProfileLink`, `findProfileUrl` and `tip`. `recheckAfterDays` is 60. If you can't fetch it, say so and work from what the user tells you; don't invent opt-out URLs or email addresses.
 
 ## Re-check reminders
-Users can copy a progress summary from the checklist ("Copy summary for my AI assistant"). It lists each site's status, the date the opt-out was sent and the re-check due date (60 days later, because brokers relist people).
+Users can copy a progress summary from the Opt Out Kit home page ("Copy summary for my AI assistant"). It covers the people-search checklist plus the Lock it down and Big tech checklists. It lists each site's status, the date the opt-out was sent and the re-check due date (60 days later, because brokers relist people).
 - If you can set reminders, set one per due date: "Re-check <site> for your listing", with the opt-out link.
-- If you can't, list the due dates clearly and suggest the checklist's "Add re-check reminders to my calendar" button, which saves a calendar file.
+- If you can't, list the due dates clearly and suggest the home page's "Add re-check reminders to my calendar" button, which saves a calendar file.
 - For sites still marked Listed, offer to walk through that site's opt-out.
 
 ## Verifying links
@@ -37,6 +37,7 @@ Draft emails the user sends from their own account:
 - Include only the name, location and listing link the user provides. Say that if the company needs to verify identity it can reply by email. These are templates, not legal advice.
 
 ## After an opt-out
-- When the site confirms removal, the user marks it Removed on the checklist.
+- When the site confirms removal, the user marks it Removed on the checklist (optoutkit.org/remove).
+- For identity-theft protection, point them to optoutkit.org/lockdown: free freezes at all three credit bureaus, an IRS Identity Protection PIN, a ChexSystems freeze and Global Privacy Control.
 - If a listing reappears, it's normal: brokers rebuild records from public sources. Help them opt out again and set a new reminder.
-- To move the checklist to another device, they use Export progress and Import progress on the page.
+- To move the checklist to another device, they use Export progress and Import progress on the home page.

@@ -3,7 +3,7 @@
 > A free, no-tracking web page at https://optoutkit.org that helps people remove their own listings from US people-search sites, check whether a password has leaked, and draft data-removal requests. No accounts, cookies or analytics. Everything runs in the visitor's browser; the only outside request is a k-anonymity password lookup (first 5 characters of a SHA-1 hash) to Have I Been Pwned.
 
 How an AI assistant can help a user of this site:
-- Remind them to re-check sites. Users can copy a progress summary from the checklist; opt-outs should be re-checked 60 days after they were sent, because brokers relist people.
+- Remind them to re-check sites. Users can copy a progress summary from the home page; opt-outs should be re-checked 60 days after they were sent, because brokers relist people.
 - Verify links. Before a user opens an opt-out page, confirm its domain is in that broker's officialDomains in brokers.json. Opting out is always free; pages that build a paid report are sales pages.
 - Explain forms and draft emails. Help with opt-out emails and deletion requests (California CCPA, UK/EU GDPR Article 17) using only details the user chooses to share. Never ask for Social Security or ID numbers.
 - Do not fill out or submit opt-out forms on the user's behalf.
@@ -12,7 +12,10 @@ How an AI assistant can help a user of this site:
 - [Broker list (JSON)](https://optoutkit.org/brokers.json): every site with its opt-out URL, official domains, whether a profile link is needed, and tips
 
 ## Docs
-- [Main page](https://optoutkit.org/): checklist and tools
+- [Home](https://optoutkit.org/): overall progress, reminders, export/import and the copy-for-AI summary
+- [Remove your listings](https://optoutkit.org/remove): people-search opt-out checklist
+- [Lock it down](https://optoutkit.org/lockdown): credit freezes, IRS Identity Protection PIN, ChexSystems freeze, Global Privacy Control, mail and phone opt-outs
+- [Tools](https://optoutkit.org/tools): private password check, email breach check, removal-request drafts
 - [FAQ](https://optoutkit.org/faq): privacy, how the checklist works, opting out
 - [Your rights & getting involved](https://optoutkit.org/rights): state privacy laws, how to use them, a letter to representatives, nonpartisan ways to get involved
 - [Big tech accounts](https://optoutkit.org/bigtech): steps to shrink what Google, Amazon, Meta, Microsoft and Apple keep, each linking to the company's own directions
