@@ -16,3 +16,10 @@ Source for [optoutkit.org](https://optoutkit.org): a free page for checking leak
 
 ## Editing the page script
 `_headers` allows the inline script by its SHA-256 hash. After any change to the `<script>` in `index.html`, regenerate the hash or browsers will block the script.
+
+## License
+Copyright (C) 2026 forbidden-cackle9
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. It is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See [LICENSE](LICENSE) for details.
+
+If you run a modified version of this site for others, the AGPL requires you to offer them its source code.
