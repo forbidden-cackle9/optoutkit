@@ -80,6 +80,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @media (max-width:560px){.broker{grid-template-columns:1fr}.broker .ctl{min-width:0;flex-direction:row;flex-wrap:wrap}.broker .ctl>*{flex:1 1 140px}}
 .also{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
 .confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.note{background:var(--warn-bg);border-radius:6px;padding:10px 14px}
+.group-head{display:flex;flex-direction:column;gap:4px;margin-bottom:-14px}
+.group{font-size:1.75rem}
 footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
 @media (prefers-reduced-motion:reduce){.fill{transition:none}}
 </style>
@@ -95,8 +98,26 @@ footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;ga
   </div>
 </header>
 
+<section aria-labelledby="br-h">
+  <div><span class="label">Main checklist</span><h2 id="br-h">Remove yourself from people-search sites</h2></div>
+  <p>Work down the list. Each opt-out link takes you straight to the site's removal page, which finds your record for you. A few sites need the link to your profile first, so those also have a <strong>Find your profile</strong> link. Sites marked <span class="tag" style="margin:0">Priority</span> are the most widely used. Sites often relist people, so re-check anything you opted out of more than 60 days ago.</p>
+  <p class="note"><strong>Opting out is always free.</strong> If a site makes you wait while it "builds a report," asks for payment, or offers a background check, you're on a sales page. Close it and use the opt-out link here instead.</p>
+  <div class="progress">
+    <div class="track" role="progressbar" aria-labelledby="br-h" aria-valuemin="0" aria-valuemax="100" id="track"><div class="fill" id="fill"></div></div>
+    <div class="counts small" id="counts"></div>
+  </div>
+  <ul class="brokers" id="brokers"></ul>
+  <div class="confirm">
+    <button type="button" class="ghost" id="reset">Reset checklist</button>
+    <span id="resetask" hidden>Clear every status and date? <button type="button" class="primary" id="resetyes">Yes, clear</button> <button type="button" class="ghost" id="resetno">Cancel</button></span>
+  </div>
+  <p class="small muted" id="storenote">Your progress is saved in this browser only. Clearing site data or using a private window removes it.</p>
+</section>
+
+<div class="group-head"><h2 class="group">Tools</h2><p class="muted">Quick checks to run any time you set a new password or hear about a breach.</p></div>
+
 <section aria-labelledby="pw-h">
-  <div><span class="label">Step 1</span><h2 id="pw-h">Has a password leaked?</h2></div>
+  <div><span class="label">Tool</span><h2 id="pw-h">Has a password leaked?</h2></div>
   <p>Type a password you use. Your browser scrambles it into a 40-character code (a SHA-1 hash). Only the first 5 characters are sent to Have I Been Pwned, which returns every leaked code starting with them. Your browser does the matching, so the password never leaves this device.</p>
   <form id="pwform" class="row" autocomplete="off">
     <label for="pw" class="label" style="flex-basis:100%">Password</label>
@@ -113,7 +134,7 @@ footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;ga
 </section>
 
 <section aria-labelledby="em-h">
-  <div><span class="label">Step 2</span><h2 id="em-h">Has your email been in a breach?</h2></div>
+  <div><span class="label">Tool</span><h2 id="em-h">Has your email been in a breach?</h2></div>
   <p>For this step we send you to Have I Been Pwned, and that's on purpose. Checking an email means sending the address itself, and we'd rather never see it. Have I Been Pwned is the most widely used breach database and has been running since 2013.</p>
   <ul class="also">
     <li><strong>Type your email in the search box on their home page.</strong> The free search is all you need.</li>
@@ -124,23 +145,8 @@ footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;ga
   <div class="row"><a class="btn ghost" href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Search your email on Have I Been Pwned</a></div>
 </section>
 
-<section aria-labelledby="br-h">
-  <div><span class="label">Step 3</span><h2 id="br-h">Remove yourself from people-search sites</h2></div>
-  <p>Search each site for yourself. If you're listed, follow the opt-out link. Sites marked <span class="tag" style="margin:0">Priority</span> are the most widely used. Sites often relist people, so re-check anything you opted out of more than 60 days ago.</p>
-  <div class="progress">
-    <div class="track" role="progressbar" aria-labelledby="br-h" aria-valuemin="0" aria-valuemax="100" id="track"><div class="fill" id="fill"></div></div>
-    <div class="counts small" id="counts"></div>
-  </div>
-  <ul class="brokers" id="brokers"></ul>
-  <div class="confirm">
-    <button type="button" class="ghost" id="reset">Reset checklist</button>
-    <span id="resetask" hidden>Clear every status and date? <button type="button" class="primary" id="resetyes">Yes, clear</button> <button type="button" class="ghost" id="resetno">Cancel</button></span>
-  </div>
-  <p class="small muted" id="storenote">Your progress is saved in this browser only. Clearing site data or using a private window removes it.</p>
-</section>
-
 <section aria-labelledby="more-h">
-  <div><span class="label">Step 4</span><h2 id="more-h">Lock down the rest</h2></div>
+  <div><span class="label">More protection</span><h2 id="more-h">Lock down the rest</h2></div>
   <ul class="also">
     <li><strong>Freeze your credit</strong> at all three bureaus. It's free and blocks new accounts in your name: <a href="https://www.equifax.com/personal/credit-report-services/credit-freeze/" target="_blank" rel="noopener noreferrer">Equifax</a>, <a href="https://www.experian.com/freeze/center.html" target="_blank" rel="noopener noreferrer">Experian</a>, <a href="https://www.transunion.com/credit-freeze/place-credit-freeze" target="_blank" rel="noopener noreferrer">TransUnion</a>.</li>
     <li><strong>Google "Results about you"</strong> finds search results showing your phone, address or email and lets you request removal: <a href="https://support.google.com/websearch/answer/12719076" target="_blank" rel="noopener noreferrer">how it works</a>.</li>
@@ -161,23 +167,23 @@ footer{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;ga
 "use strict";
 var KEY="optoutkit-v1";
 var BROKERS=[
- {id:"beenverified",name:"BeenVerified",p:1,search:"https://www.beenverified.com/app/optout/search",opt:"https://www.beenverified.com/app/optout/search",tip:"Also covers PeopleLooker and PeopleSmart. One opt-out per email address; confirm by the email link."},
- {id:"checkpeople",name:"CheckPeople",p:1,search:"https://checkpeople.com/privacy-rights",opt:"https://checkpeople.com/opt-out",tip:"Request your data first under Right to Know. The opt-out asks for birthdate and full legal name."},
- {id:"intelius",name:"Intelius / PeopleConnect",p:1,search:"https://www.intelius.com/",opt:"https://suppression.peopleconnect.us/login",tip:"One form covers Instant Checkmate, TruthFinder, US Search, ZabaSearch, Classmates and more."},
- {id:"mylife",name:"MyLife",p:1,search:"https://www.mylife.com",opt:"https://www.mylife.com/privacyrequest",tip:"It may push you to make an account with ID. Emailing privacy@mylife.com with your profile link is an alternative."},
+ {id:"beenverified",name:"BeenVerified",p:1,search:"",opt:"https://www.beenverified.com/app/optout/search",tip:"Also covers PeopleLooker and PeopleSmart. One opt-out per email address; confirm by the email link."},
+ {id:"checkpeople",name:"CheckPeople",p:1,search:"",opt:"https://checkpeople.com/opt-out",tip:"Request your data first under Right to Know. The opt-out asks for birthdate and full legal name."},
+ {id:"intelius",name:"Intelius / PeopleConnect",p:1,search:"",opt:"https://suppression.peopleconnect.us/login",tip:"Skip intelius.com, where searches are slow and end in a paid report. The opt-out page finds your record itself. One form covers Instant Checkmate, TruthFinder, US Search, ZabaSearch, Classmates and more."},
+ {id:"mylife",name:"MyLife",p:1,search:"",opt:"https://www.mylife.com/privacyrequest",tip:"It may push you to make an account with ID. Emailing privacy@mylife.com with your profile link is an alternative."},
  {id:"nuwber",name:"Nuwber",p:1,search:"https://nuwber.com/",opt:"https://nuwber.com/removal/link",tip:"Filter by state to find your profile link, then paste it in the removal form. Skip the paid report."},
- {id:"smartbgc",name:"SmartBackgroundChecks",p:1,search:"https://www.smartbackgroundchecks.com/",opt:"https://www.smartbackgroundchecks.com/optout",tip:"Usually removes you from PeopleFinders too."},
+ {id:"smartbgc",name:"SmartBackgroundChecks",p:1,search:"",opt:"https://www.smartbackgroundchecks.com/optout",tip:"Usually removes you from PeopleFinders too."},
  {id:"spokeo",name:"Spokeo",p:1,search:"https://www.spokeo.com/search",opt:"https://www.spokeo.com/optout",tip:"Paste your profile link and email, then confirm by the email link."},
- {id:"thatsthem",name:"That's Them",p:1,search:"https://thatsthem.com/",opt:"https://thatsthem.com/optout",tip:"Ignore the identity-protection upsell links."},
- {id:"whitepages",name:"Whitepages",p:1,search:"https://www.whitepages.com/",opt:"https://www.whitepages.com/suppression_requests",tip:"Verifies by phone call with a code. Also removes you from 411.com."},
- {id:"fastpeople",name:"FastPeopleSearch",p:1,search:"https://www.fastpeoplesearch.com/",opt:"https://www.fastpeoplesearch.com/optout",tip:"Expect a captcha."},
- {id:"familytree",name:"FamilyTreeNow",p:1,search:"https://www.familytreenow.com/optout",opt:"https://www.familytreenow.com/optout",tip:"Search and remove from the same page."},
- {id:"usphonebook",name:"USPhoneBook",p:1,search:"https://www.usphonebook.com/",opt:"https://www.usphonebook.com/opt-out/",tip:"Search by your phone number. If the form hangs, email support+optout@usphonebook.com."},
- {id:"truepeople",name:"TruePeopleSearch",p:0,search:"https://www.truepeoplesearch.com/removal",opt:"https://www.truepeoplesearch.com/removal",tip:"The removal page also does the search. Several captchas."},
- {id:"cyberbgc",name:"Cyber Background Checks",p:0,search:"https://www.cyberbackgroundchecks.com/",opt:"https://www.cyberbackgroundchecks.com/removal",tip:""},
- {id:"searchpeoplefree",name:"SearchPeopleFree",p:0,search:"https://www.searchpeoplefree.com/",opt:"https://www.searchpeoplefree.com/opt-out",tip:"Search by name, phone, address and email separately."},
- {id:"peoplesearchnow",name:"PeopleSearchNow",p:0,search:"https://www.peoplesearchnow.com/",opt:"https://www.peoplesearchnow.com/opt-out",tip:""},
- {id:"usapeople",name:"USA People Search",p:0,search:"https://www.usa-people-search.com/",opt:"https://www.usa-people-search.com/removal",tip:""},
+ {id:"thatsthem",name:"That's Them",p:1,search:"",opt:"https://thatsthem.com/optout",tip:"Ignore the identity-protection upsell links."},
+ {id:"whitepages",name:"Whitepages",p:1,search:"https://www.whitepages.com/",opt:"https://www.whitepages.com/suppression_requests",tip:"Copy the link to your listing first, then paste it in the removal form. Verifies by phone call with a code. Also removes you from 411.com."},
+ {id:"fastpeople",name:"FastPeopleSearch",p:1,search:"",opt:"https://www.fastpeoplesearch.com/optout",tip:"Expect a captcha. Ignore offers for full reports."},
+ {id:"familytree",name:"FamilyTreeNow",p:1,search:"",opt:"https://www.familytreenow.com/optout",tip:""},
+ {id:"usphonebook",name:"USPhoneBook",p:1,search:"",opt:"https://www.usphonebook.com/opt-out/",tip:"Search by your phone number. If the form hangs, email support+optout@usphonebook.com."},
+ {id:"truepeople",name:"TruePeopleSearch",p:0,search:"",opt:"https://www.truepeoplesearch.com/removal",tip:"Several captchas."},
+ {id:"cyberbgc",name:"Cyber Background Checks",p:0,search:"https://www.cyberbackgroundchecks.com/",opt:"https://www.cyberbackgroundchecks.com/removal",tip:"Copy the link to your listing first, then paste it in the removal form."},
+ {id:"searchpeoplefree",name:"SearchPeopleFree",p:0,search:"",opt:"https://www.searchpeoplefree.com/opt-out",tip:"Search by name, phone, address and email separately."},
+ {id:"peoplesearchnow",name:"PeopleSearchNow",p:0,search:"",opt:"https://www.peoplesearchnow.com/opt-out",tip:""},
+ {id:"usapeople",name:"USA People Search",p:0,search:"",opt:"https://www.usa-people-search.com/removal",tip:""},
  {id:"acxiom",name:"Acxiom",p:0,search:"",opt:"https://www.acxiom.com/optout/",tip:"A marketing data broker with no public search. Opt out anyway."}
 ];
 var STATUS=[["","Not checked"],["not-listed","Not listed"],["listed","Listed"],["sent","Opt-out sent"],["removed","Removed"]];
@@ -201,8 +207,8 @@ BROKERS.forEach(function(b){
   info.appendChild(h);
   if(b.tip)info.appendChild(el("p",{"class":"small muted"},b.tip));
   var links=el("div",{"class":"links"});
-  if(b.search && b.search!==b.opt)links.appendChild(link(b.search,"Search"));
-  links.appendChild(link(b.opt,b.search===b.opt?"Search & opt out":"Opt out"));
+  if(b.search)links.appendChild(link(b.search,"Find your profile"));
+  links.appendChild(link(b.opt,"Opt out"));
   info.appendChild(links);
   var flag=el("span",{"class":"flag",id:"f-"+b.id});flag.hidden=true;info.appendChild(flag);
   var ctl=el("div",{"class":"ctl"});
