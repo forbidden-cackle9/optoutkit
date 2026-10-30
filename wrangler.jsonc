@@ -1,0 +1,6 @@
+{
+  // Static site only: Cloudflare serves the public folder; no Worker code runs.
+  "name": "crimson-morning-a58b",
+  "compatibility_date": "2026-10-30",
+  "assets": { "directory": "./public" }
+}
