@@ -1,7 +1,7 @@
 {
   "name": "Opt Out Kit broker list",
   "source": "https://optoutkit.org",
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "recheckAfterDays": 60,
   "notes": "Opting out is always free. Only follow opt-out links whose domain is in officialDomains. Pages that build a paid report are sales pages, not opt-outs.",
   "brokers": [

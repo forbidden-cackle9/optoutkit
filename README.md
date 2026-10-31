@@ -8,14 +8,14 @@ Source for [optoutkit.org](https://optoutkit.org): a free page for checking leak
 
 ## Layout
 - `public/es/` — Spanish versions of every page. Scripts and data are shared: text comes from `OOK.t("English","Español")` in scripts and `*_es` fields in the data files. When you change a page, change its Spanish copy too.
-- `public/safety.html` (+ `safety.js`, `safety-data.js`) — hotlines and address confidentiality programs by state; review each January.
+- `drafts/safety/` — a parked safety page (hotlines, address confidentiality programs). Not served; see its README to restore.
 - `public/brokers.json`, `llms.txt`, `robots.txt`, `sitemap.xml` — machine-readable info for search engines and AI assistants
 - `public/opt-out-kit-skill.zip` — downloadable Claude skill, built from `skill/opt-out-kit/`
 - `tools/sync.py` — run after editing `brokers-data.js`: regenerates `brokers.json` and the skill zip
 - `public/funding.js` — running costs, support received (after fees) and support links. Support stays hidden until a link is set, and the links disappear once costs are covered.
 - `tools/scores.py` — the state privacy ranking: run it to regenerate `public/scores.js` (rights page heat map) and `public/us-privacy-ranking.xlsx` (download). Review each January.
 - `tools/check_links.py` + `.github/workflows/check-links.yml` — weekly link check that opens an issue if a link breaks
-- `public/` — everything that is served. Pages: `index.html` (home + overall tracker, `home.js`), `remove.html` (`remove.js`, data in `brokers-data.js`), `lockdown.html` and `bigtech.html` (shared `steps.js`, data in `lockdown-data.js` / `bigtech-data.js`), `tools.html` (`tools.js`), `common.js` shared helpers; also `faq.html`, `rights.html` + `rights.js`,  `states.js` (state privacy laws, review each legislative session), `styles.css`, `favicon.svg`, `_headers`
+- `public/` — everything that is served. Pages: `index.html` (home + overall tracker, `home.js`), `remove.html` (`remove.js`, data in `brokers-data.js`), `lockdown.html` and `bigtech.html` and `devices.html` (shared `steps.js`, data in `lockdown-data.js` / `bigtech-data.js` / `devices-data.js`), `tools.html` (`tools.js`), `common.js` shared helpers; also `faq.html`, `rights.html` + `rights.js`,  `states.js` (state privacy laws, review each legislative session), `styles.css`, `favicon.svg`, `_headers`
 - `wrangler.jsonc` — tells Cloudflare to serve `public/` as a static site
 
 ## License

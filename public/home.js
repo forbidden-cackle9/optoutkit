@@ -10,7 +10,8 @@ function steps(set){var a=[];(window["OOK_"+set.toUpperCase()]||[]).forEach(func
 var AREAS=[
  {k:"brokers",name:T("Remove your listings","Quite sus perfiles"),href:O.p("/remove"),unit:T("sites handled","sitios revisados")},
  {k:"lockdown",name:T("Lock it down","Proteja sus datos"),href:O.p("/lockdown"),unit:T("steps done","pasos hechos")},
- {k:"bigtech",name:T("Big tech accounts","Cuentas de grandes tecnológicas"),href:O.p("/bigtech"),unit:T("steps done","pasos hechos")}
+ {k:"bigtech",name:T("Big tech accounts","Cuentas de grandes tecnológicas"),href:O.p("/bigtech"),unit:T("steps done","pasos hechos")},
+ {k:"devices",name:T("Your devices","Sus dispositivos"),href:O.p("/devices"),unit:T("steps done","pasos hechos")}
 ];
 var data={};
 function load(){AREAS.forEach(function(a){data[a.k]=O.load(O.KEYS[a.k]);});}
@@ -64,9 +65,9 @@ document.getElementById("k-ai").addEventListener("click",function(){
     lines.push(x);
   });
   var extra=[];
-  ["lockdown","bigtech"].forEach(function(k){var list=steps(k),done=[],todo=[];
-    list.forEach(function(s){if(data[k][s.id])done.push(s.t);else todo.push(s.t);});
-    var nm=k==="lockdown"?T("Lock it down","Proteja sus datos"):T("Big tech accounts","Cuentas de grandes tecnológicas");
+  ["lockdown","bigtech","devices"].forEach(function(k){var list=steps(k),done=[],todo=[];
+    list.forEach(function(s){var v=data[k][s.id];if(v&&v!=="na")done.push(s.t);else if(!v)todo.push(s.t);});
+    var nm={lockdown:T("Lock it down","Proteja sus datos"),bigtech:T("Big tech accounts","Cuentas de grandes tecnológicas"),devices:T("Your devices","Sus dispositivos")}[k];
     extra.push("\n"+nm+": "+T(done.length+" of "+list.length+" done.",done.length+" de "+list.length+" hechos.")+(todo.length?T(" Still to do: "," Pendiente: ")+todo.join("; ")+".":""));
     if(done.length)any=true;});
   if(!any){kst.textContent=T("Mark at least one step first.","Primero marque al menos un paso.");return;}
@@ -101,7 +102,7 @@ document.getElementById("k-cal").addEventListener("click",function(){
 });
 document.getElementById("k-exp").addEventListener("click",function(){
   load();
-  saveFile("optoutkit-progress-"+today()+".json","application/json",JSON.stringify({app:"optoutkit",version:2,exported:today(),state:{brokers:data.brokers,lockdown:data.lockdown,bigtech:data.bigtech}},null,2));
+  saveFile("optoutkit-progress-"+today()+".json","application/json",JSON.stringify({app:"optoutkit",version:2,exported:today(),state:{brokers:data.brokers,lockdown:data.lockdown,bigtech:data.bigtech,devices:data.devices}},null,2));
   kst.textContent=T("Progress saved as a file. Import it on another device to continue there.","Progreso guardado en un archivo. Impórtelo en otro dispositivo para seguir allí.");
 });
 var DATE=/^\d{4}-\d{2}-\d{2}$/;
@@ -109,7 +110,7 @@ function cleanBrokers(src){var ok={},valid={};STATUS.forEach(function(x){valid[x
   BROKERS.forEach(function(b){var r=src&&src[b.id];if(!r||typeof r!=="object")return;var c={};
     if(typeof r.s==="string"&&valid[r.s])c.s=r.s;["d","t"].forEach(function(k){if(typeof r[k]==="string"&&DATE.test(r[k]))c[k]=r[k];});
     if(c.s||c.d)ok[b.id]=c;});return ok;}
-function cleanSteps(k,src){var ok={};steps(k).forEach(function(s){var v=src&&src[s.id];if(typeof v==="string"&&DATE.test(v))ok[s.id]=v;});return ok;}
+function cleanSteps(k,src){var ok={};steps(k).forEach(function(s){var v=src&&src[s.id];if(typeof v==="string"&&(DATE.test(v)||v==="na"))ok[s.id]=v;});return ok;}
 document.getElementById("k-imp").addEventListener("change",function(){
   var f=this.files&&this.files[0],inp=this;if(!f)return;
   var rd=new FileReader();
@@ -119,7 +120,7 @@ document.getElementById("k-imp").addEventListener("change",function(){
       var v2=d.version>=2,br=cleanBrokers(v2?d.state.brokers:d.state);
       O.save(O.KEYS.brokers,br);
       var n=Object.keys(br).length;
-      if(v2){["lockdown","bigtech"].forEach(function(k){var c=cleanSteps(k,d.state[k]);O.save(O.KEYS[k],c);n+=Object.keys(c).length;});}
+      if(v2){["lockdown","bigtech","devices"].forEach(function(k){var c=cleanSteps(k,d.state[k]);O.save(O.KEYS[k],c);n+=Object.keys(c).length;});}
       render();kst.textContent=T("Imported "+n+(n===1?" item.":" items."),"Se importó "+(n===1?"1 elemento.":n+" elementos."));
     }catch(e){kst.textContent=T("That file isn't an Opt Out Kit progress file.","Ese archivo no es un archivo de progreso de Opt Out Kit.");}
     inp.value="";

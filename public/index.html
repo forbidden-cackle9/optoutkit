@@ -21,7 +21,7 @@
 <div class="wrap">
 <header>
   <nav class="toplinks" aria-label="Site">
-    <a href="/" aria-current="page">Home</a><a href="/remove">Remove listings</a><a href="/lockdown">Lock it down</a><a href="/bigtech">Big tech</a><a href="/tools">Tools</a><a href="/rights">Your rights</a><a href="/safety">Safety</a><a href="/faq">FAQ</a><a class="lang" href="/es/" hreflang="es" lang="es">Español</a>
+    <a href="/" aria-current="page">Home</a><a href="/remove">Remove listings</a><a href="/lockdown">Lock it down</a><a href="/bigtech">Big tech</a><a href="/devices">Devices</a><a href="/tools">Tools</a><a href="/rights">Your rights</a><a href="/faq">FAQ</a><a class="lang" href="/es/" hreflang="es" lang="es">Español</a>
   </nav>
   <span class="label">Free · No account · No tracking</span>
   <h1>Opt Out Kit</h1>
@@ -29,7 +29,6 @@
   <div class="promise">
     <span class="chip">No cookies</span><span class="chip">No analytics</span><span class="chip">No ad trackers</span><span class="chip">Your progress stays on this device</span>
   </div>
-  <p class="small"><a href="/safety">If someone is threatening or stalking you, start here</a></p>
 </header>
 
 <section aria-labelledby="all-h">
@@ -42,6 +41,7 @@
     <li data-area="brokers"><a href="/remove">Remove your listings</a><span class="mini" aria-hidden="true"><span></span></span><span class="cnt small muted"></span></li>
     <li data-area="lockdown"><a href="/lockdown">Lock it down</a><span class="mini" aria-hidden="true"><span></span></span><span class="cnt small muted"></span></li>
     <li data-area="bigtech"><a href="/bigtech">Big tech accounts</a><span class="mini" aria-hidden="true"><span></span></span><span class="cnt small muted"></span></li>
+    <li data-area="devices"><a href="/devices">Your devices</a><span class="mini" aria-hidden="true"><span></span></span><span class="cnt small muted"></span></li>
   </ul>
   <p class="flag" id="due" hidden></p>
   <div class="row"><a class="btn primary" id="continue" href="/remove">Start here: remove your listings</a></div>
@@ -68,6 +68,13 @@
     <div class="mini" aria-hidden="true"><span></span></div>
     <span class="cnt small muted"></span>
     <span class="go">Review accounts →</span>
+  </a>
+  <a class="card" href="/devices" data-area="devices">
+    <h3>Your devices</h3>
+    <p class="small">Turn off tracking on your smart TV, phone carrier and car, and opt out of face search sites and marketing mail.</p>
+    <div class="mini" aria-hidden="true"><span></span></div>
+    <span class="cnt small muted"></span>
+    <span class="go">Check your devices →</span>
   </a>
   <a class="card" href="/tools">
     <h3>Tools</h3>
@@ -100,7 +107,7 @@
 
 <footer>
   <p class="support-slot small" hidden></p>
-  <p><a href="/">Home</a> · <a href="/remove">Remove listings</a> · <a href="/lockdown">Lock it down</a> · <a href="/bigtech">Big tech</a> · <a href="/tools">Tools</a> · <a href="/rights">Your rights</a> · <a href="/safety">Safety</a> · <a href="/faq">FAQ</a></p>
+  <p><a href="/">Home</a> · <a href="/remove">Remove listings</a> · <a href="/lockdown">Lock it down</a> · <a href="/bigtech">Big tech</a> · <a href="/devices">Devices</a> · <a href="/tools">Tools</a> · <a href="/rights">Your rights</a> · <a href="/faq">FAQ</a></p>
   <p><a href="https://github.com/forbidden-cackle9/optoutkit" target="_blank" rel="noopener noreferrer">Source code on GitHub</a> · Open source under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a></p>
 </footer>
 </div>
@@ -110,6 +117,7 @@
 <script src="/brokers-data.js"></script>
 <script src="/lockdown-data.js"></script>
 <script src="/bigtech-data.js"></script>
+<script src="/devices-data.js"></script>
 <script src="/home.js"></script>
 </body>
 </html>

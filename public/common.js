@@ -18,7 +18,7 @@ var O=window.OOK={
   addDays:function(s,n){var t=new Date(s+"T00:00:00");t.setDate(t.getDate()+n);return t.getFullYear()+"-"+pad(t.getMonth()+1)+"-"+pad(t.getDate());},
   daysSince:function(s){if(!s)return 0;var t=Date.parse(s+"T00:00:00");return isNaN(t)?0:Math.floor((Date.now()-t)/864e5);},
   num:function(n){return Number(n).toLocaleString(lang==="es"?"es-US":"en-US");},
-  KEYS:{brokers:"optoutkit-v1",lockdown:"optoutkit-lockdown-v1",bigtech:"optoutkit-bigtech-v1",lang:"optoutkit-lang"},
+  KEYS:{brokers:"optoutkit-v1",lockdown:"optoutkit-lockdown-v1",bigtech:"optoutkit-bigtech-v1",devices:"optoutkit-devices-v1",lang:"optoutkit-lang"},
   ok:true,
   load:function(key){try{return JSON.parse(localStorage.getItem(key)||"{}")||{};}catch(e){O.ok=false;return {};}},
   save:function(key,obj){try{localStorage.setItem(key,JSON.stringify(obj));}catch(e){O.ok=false;}return O.ok;},

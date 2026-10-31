@@ -3,6 +3,7 @@
 var O=window.OOK,el=O.el,today=O.today,nice=O.nice,T=O.t;
 var root=document.getElementById("companies");if(!root)return;
 var set=root.getAttribute("data-set"),CO=window["OOK_"+set.toUpperCase()],KEY=O.KEYS[set];
+var canSkip=set!=="lockdown"; /* not everyone has every device or account */
 var st=O.load(KEY),total=0;
 CO.forEach(function(c){
   var cname=O.f(c,"name");
@@ -15,10 +16,15 @@ CO.forEach(function(c){
     var li=el("li",{"class":"step",id:"s-"+s.id});
     var lab=el("label",{"class":"chk"});var cb=el("input",{type:"checkbox",id:"c-"+s.id});lab.appendChild(cb);lab.appendChild(el("span",{"class":"vh"},T("Done: ","Hecho: ")+title));
     var body=el("div",{"class":"sbody"});body.appendChild(el("h3",{},title));body.appendChild(el("p",{"class":"small"},O.f(s,"d")));
+    if(s.more){var dl=el("ul",{"class":"paths small"});s.more.forEach(function(m){var x=el("li");x.appendChild(el("strong",{},m[0]+": "));x.appendChild(document.createTextNode(O.lang==="es"?m[2]:m[1]));dl.appendChild(x);});body.appendChild(dl);}
     var row=el("div",{"class":"links"});
-    var text=set==="bigtech"?T("Directions from "+cname,"Instrucciones de "+cname):T("Go to the official page","Ir a la página oficial");
-    row.appendChild(O.link(O.f(s,"u"),text));
-    if(O.lang==="es"&&!s.u_es)row.appendChild(el("span",{"class":"small muted"},"(en inglés)"));
+    if(s.u){
+      var text=O.f(s,"label")||(set==="bigtech"?T("Directions from "+cname,"Instrucciones de "+cname):T("Go to the official page","Ir a la página oficial"));
+      row.appendChild(O.link(O.f(s,"u"),text));
+      if(O.lang==="es"&&!s.u_es)row.appendChild(el("span",{"class":"small muted"},"(en inglés)"));
+    }
+    if(canSkip){var na=el("button",{type:"button","class":"linkbtn small",id:"x-"+s.id},"");row.appendChild(na);
+      na.addEventListener("click",function(){if(st[s.id]==="na")delete st[s.id];else st[s.id]="na";O.save(KEY,st);render();});}
     body.appendChild(row);
     body.appendChild(el("span",{"class":"when",id:"w-"+s.id}));
     li.appendChild(lab);li.appendChild(body);ul.appendChild(li);
@@ -28,10 +34,12 @@ CO.forEach(function(c){
 });
 function render(){
   var done=0;
-  CO.forEach(function(c){var n=0;c.steps.forEach(function(s){var d=st[s.id];document.getElementById("c-"+s.id).checked=!!d;
-    var w=document.getElementById("w-"+s.id);w.textContent=d?T("Done on ","Hecho el ")+nice(d):"";w.hidden=!d;
-    document.getElementById("s-"+s.id).classList.toggle("done",!!d);if(d){n++;done++;}});
-    document.getElementById("n-"+c.id).textContent=T(n+" of "+c.steps.length+" done",n+" de "+c.steps.length+" hechos");});
+  CO.forEach(function(c){var n=0;c.steps.forEach(function(s){var d=st[s.id],skip=d==="na";
+    var cb=document.getElementById("c-"+s.id);cb.checked=!!d&&!skip;cb.disabled=skip;
+    var w=document.getElementById("w-"+s.id);w.textContent=skip?T("Doesn't apply to you","No aplica en su caso"):(d?T("Done on ","Hecho el ")+nice(d):"");w.hidden=!d;
+    var x=document.getElementById("x-"+s.id);if(x)x.textContent=skip?T("It applies after all","Sí me aplica"):T("Doesn't apply to me","No me aplica");
+    var li=document.getElementById("s-"+s.id);li.classList.toggle("done",!!d&&!skip);li.classList.toggle("skipped",skip);if(d){n++;done++;}});
+    document.getElementById("n-"+c.id).textContent=T(n+" of "+c.steps.length+" handled",n+" de "+c.steps.length+" resueltos");});
   var pct=Math.round(done/total*100);
   document.getElementById("bt-pct").textContent=pct+"%";
   document.getElementById("bt-note").textContent=T("done · "+done+" of "+total+" steps","hecho · "+done+" de "+total+" pasos");
